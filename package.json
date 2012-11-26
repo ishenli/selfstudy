@@ -1,0 +1,24 @@
+{
+    "name": "example",
+    "version": "1.0.0",
+    "root": "selfstudy",
+    "description": "这是 自学Arale 的一个示例，点击某处浮层能滑到那个位置",
+    "homepage": "",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "bugs": {
+        "url": ""
+    },
+    "license": "",
+   "dependencies": {
+    "$": "$",
+    "overlay": "arale/overlay/0.9.10/overlay"
+},
+    "tests": ["example"],
+    "output": {
+        "example.js": "."
+    }
+}
