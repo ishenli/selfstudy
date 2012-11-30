@@ -1,0 +1,468 @@
+html{
+	height: 100%;
+}
+body{
+	background:url(../images/irongrip.png) repeat  ;
+  	min-height:100%; height:auto !important; height:100%;  
+} 
+.lay_topfixed{ height: 34px; width: 100%; position: relative; z-index: 400; }
+.go_toolbar{ position: relative; height: 34px; z-index: 500; text-align: center; font-size: 12px; color: #fff;
+background-color: #1F1F1F}
+.go_toolbar .wrap{width: 960px;height:34px;margin: 0 auto;text-align: left;zoom:1;padding: 0 20px;}
+.go_toolbar .wrap .banner{font-size:14px;}
+.go_toolbar .wrap .banner a{font-size:14px;line-height: 34px;color: #ffffff;}
+.arrow_i,.arrow_bg,.ui_arrow,.ui_arrow_bg,.feed_add_bar .add_time_arr {
+	position:absolute;
+	font-size:0;
+	line-height:0
+}
+.lunar1 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:0 0
+}
+.lunar2 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-47px 0
+}
+.lunar3 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-94px 0
+}
+.lunar4 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-141px 0
+}
+.lunar5 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-188px 0
+}
+.lunar6 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-235px 0
+}
+.lunar7 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-282px 0
+}
+.lunar8 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-329px 0
+}
+.lunar9 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-376px 0
+}
+.lunar10 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-423px 0
+}
+.lunar11 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-470px 0
+}
+.lunar12 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-517px 0
+}
+.lunar13 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-564px 0
+}
+.lunar14 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-611px 0
+}
+.lunar15 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-658px 0
+}
+.lunar16 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-705px 0
+}
+.lunar17 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-752px 0
+}
+.lunar18 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-799px 0
+}
+.lunar19 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-846px 0
+}
+.lunar20 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-893px 0
+}
+.lunar21 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-940px 0
+}
+.lunar22 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-987px 0
+}
+.lunar23 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1034px 0
+}
+.lunar24 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1081px 0
+}
+.lunar25 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1128px 0
+}
+.lunar26 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1175px 0
+}
+.lunar27 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1222px 0
+}
+.lunar28 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1269px 0
+}
+.lunar29 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1316px 0
+}
+.lunar30 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1363px 0
+}
+.lunar31 {
+	background-image:url(../images/timeline_lunar.import.png);
+	background-position:-1410px 0
+}
+#layBackground{
+}
+#layBackground .lay_position{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    min-width: 1000px;
+    min-height: 600px;
+    _height: 600px;
+}
+.tml_wrap{
+position: relative;
+z-index: 5;
+width: 960px;
+padding-bottom: 60px;
+margin: 0px auto 0;
+}
+.tml_container {
+display: block;
+position: relative;
+padding-left: 130px;
+background-repeat: repeat-y;
+background-position: 121px 0;
+background-image: url(../images/bg_tml_spine.png)
+}
+.tml_spine {
+position: absolute;
+left: 115px;
+bottom: 0;
+top: 0;
+height: 100%;
+width: 15px;
+cursor: none;
+outline: 0 none;
+}
+.tml_spine_bg {
+display: block;
+margin-left: 6px;
+width: 3px;
+height: 100%;
+}
+.period_header{
+    color: #ffffff;
+    position: relative;
+    width: 60px;
+    top: 20px;
+    left: -40px;
+    font-size: 18px;
+}
+.feeds_list {
+	padding-left:27px
+}
+.feeds_list:after {
+	content:".";
+	height:0;
+	visibility:hidden;
+	display:block;
+	clear:both
+}
+.feed_box:first-child+.r_col {
+	margin-top:60px
+}
+.feed_box {
+	width:370px;
+	padding-right:26px;
+	position:relative;
+	margin-top:30px;
+	opacity:0;
+	color:#888;
+	-webkit-backface-visibility:hidden;
+	-webkit-transform-style:preserve-3d
+}
+.l_col {
+	float:left;
+	clear:left;
+	z-index:8
+}
+.r_col {
+	float:right;
+	clear:right;
+	z-index:2
+}
+.feed_box_show {
+	opacity:1;
+	-moz-transition:opacity .5s;
+	-webkit-transition:opacity .5s;
+	transition:opacity .5s
+}
+.one_col {
+	width:777px;
+	margin-top:60px;
+	float:left;
+	*float:none;
+	*clear:both
+}
+.feed_box .box_con {
+	position:relative;
+	z-index:5;
+	border:0 none;
+	padding:15px 0;
+	background-color:#fff;
+	border-radius:4px;
+	box-shadow:0 1px 2px rgba(0,0,0,.3);
+	*zoom:1;
+	-moz-transition:box-shadow .5s;
+	-webkit-transition:box-shadow .5s;
+	transition:box-shadow .5s
+}
+.feed_box .box_con:before,.feed_box .box_con:after {
+	content:"////////////////////////////////////////////////";
+	position:absolute;
+	z-index:5;
+	top:0;
+	width:100%;
+	color:#e2f0f5;
+	font:italic 70px/8px arial;
+	overflow:hidden;
+	height:0;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s
+}
+.feed_box .box_con:after {
+	top:auto;
+	bottom:0
+}
+.feed_date {
+	overflow:hidden;
+	height:46px;
+	padding-bottom:10px;
+	*zoom:1
+}
+.feed_date .ico_lunar {
+	float:left;
+	margin-right:10px;
+	height:46px;
+	width:46px
+}
+.feed_date .date_text {
+	position:relative;
+	float:left;
+	width:200px;
+	font:28px/1 arial;
+	color:#ababab;
+	*zoom:1
+}
+.os_win7 .feed_date .date_text {
+	font-family:arial,"Microsoft Yahei"
+}
+.feed_date .date_moment {
+	position:relative;
+	height:20px;
+	line-height:20px;
+	font-size:16px;
+	overflow:hidden;
+	*zoom:1
+}
+.feed_date .ico_moment {
+	float:left;
+	margin:3px 5px 0 0;
+	width:16px;
+	height:16px;
+	background-image:url(sprite/timeline.png?max_age=19830211&d=20121107153450);
+	background-position:-968px -85px
+}
+.feed_date_day .date_text .date_days {
+	line-height:49px
+}
+.feed_box_accessLog .accessLog_tit {
+	color:#555;
+	font-size:14px;
+	height:20px;
+	line-height:20px;
+	font-weight:400
+}
+.feed_box_accessLog .ico_accessLog {
+	float:left;
+	margin-right:10px;
+	height:46px;
+	width:46px;
+	background-image:url(sprite/timeline.png?max_age=19830211&d=20121107153450);
+	background-position:-265px -49px
+}
+.feed_box .feed_arrow {
+	width:10px;
+	height:20px;
+	position:absolute;
+	z-index:5;
+	top:20px;
+	left:-9px
+}
+.feed_box .feed_arrow .arrow_i,.feed_box .feed_arrow .arrow_bg {
+	border-color:transparent #e2e2e2 transparent transparent;
+	border-width:10px 10px 10px 0;
+	border-style:dashed solid dashed dashed
+}
+.feed_box .feed_arrow .arrow_bg {
+	border-right-color:#fff;
+	left:1px
+}
+.feed_box .feed_arrow .arrow_dot {
+	position:absolute;
+	z-index:1;
+	top:5px;
+	left:-31px;
+	width:11px;
+	height:11px;
+	overflow:hidden;
+	background-image:url(../images/timeline.png);
+	background-position:-968px 0;
+	_background-image:url(../images/timeline-ie6.png);
+	_background-position:-218px 0
+}
+.r_col .feed_arrow .arrow_dot {
+	left:-438px
+}
+.arrow_line {
+	position:absolute;
+	z-index:0;
+	left:-438px;
+	top:9px;
+	width:0;
+	height:2px;
+	background-image:url(sprite/timeline.png?max_age=19830211&d=20121107153450);
+	background-position:-437px -121px;
+	overflow:hidden;
+	opacity:0;
+	_display:none
+}
+.l_col .arrow_line {
+	left:-20px
+}
+.feed_box .box_hd {
+	position:relative;
+	z-index:3;
+	padding:0 15px;
+	*zoom:1
+}
+.feed_box .feed_title {
+	font-size:14px;
+	line-height:24px;
+	margin-bottom:10px;
+	padding:0 15px
+}
+.os_win7 .feed_box .feed_title {
+	font-weight:400
+}
+.feed_box .feed_title a,.feed_box .feed_title span {
+	color:#666;
+	max-width:85%;
+	_width:85%
+}
+.feed_box .feed_title a:hover {
+	color:#6EB8D3
+}
+.feed_box .box_bd {
+	padding:0;
+	word-break:break-all;
+	word-wrap:break-word;
+	*zoom:1
+}
+.feed_box .box_bd:after {
+	content:".";
+	height:0;
+	visibility:hidden;
+	display:block;
+	clear:both
+}
+.feed_box .box_ft {
+	position:relative;
+	z-index:1;
+	margin-top:5px;
+	padding:0 15px;
+	line-height:20px;
+	color:#a8a8a8;
+	*zoom:1
+}
+.feed_box .box_ft a {
+	color:#a8a8a8
+}
+.feed_box .box_ft a:hover {
+	color:#6EB8D3
+}
+.feed_box .box_ft .ui_ico {
+	vertical-align:top;
+	*vertical-align:middle
+}
+.feed_box .box_ft .like_info {
+	padding-top:5px
+}
+.feed_box .box_ft .like_info a {
+	color:#6EB8D3
+}
+.feed_box .box_ft .feed_info {
+	padding-bottom:5px
+}
+.feed_box .box_ft .feed_place_txt {
+	position:relative;
+	left:-3px;
+	padding-bottom:5px;
+	white-space:nowrap;
+	word-wrap:normal;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	max-width:80%;
+	_width:80%
+}
+.feed_box .box_ft .feed_with_list {
+	height:30px;
+	overflow:hidden;
+	padding-bottom:8px
+}
+.feed_box .box_ft .feed_with_list a,.feed_box .box_ft .feed_with_list span {
+	margin-right:5px
+}
+.feed_box .box_ft .feed_with_list span {
+	margin-left:5px
+}
+.feed_box .box_ft .feed_with_list img {
+	vertical-align:text-bottom
+}
+
+.lunar14 {
+    background-image: url(../images/timeline_lunar.import.png);
+    background-position: -611px 0;
+}
