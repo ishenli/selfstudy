@@ -1,7 +1,7 @@
 ---
 
 ````js
-//一般放置在页尾，通过加载src/gotop.js，new 一个对象：
+//一般放置在页尾，通过加载src/gotop.js：
 seajs.use(['../src/gotop'], function(gotop) {
         new gotop({
             element:'#back-to-top',//jquery 选择器元素
