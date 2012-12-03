@@ -1,0 +1,22 @@
+{
+    "name": "slides",
+    "version": "1.0.0",
+    "root": "",
+    "description": "",
+    "homepage": "",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "bugs": {
+        "url": ""
+    },
+    "license": "",
+    "dependencies": {
+    },
+    "tests": ["slides"],
+    "output": {
+        "slides.js": "."
+    }
+}
