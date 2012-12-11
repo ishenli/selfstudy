@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直居中</title>
+	<link rel="stylesheet" type="text/css" href="../base.css">
+	<style type="text/css">
+	#parent{
+		width: 500px;
+		height: 500px;
+		background-color: red;
+		margin:0 auto;
+		position: relative;/*用于子元素的定位*/
+	}
+	.box{
+		width: 200px;
+		height: 200px;
+		background-color: #00f;
+		color: #fff;
+
+	}
+
+	.sl-vc{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left:-100px;/*块的宽度一半*/
+		margin-top: -100px; /*块的高度一半*/
+	}
+	</style>
+</head>
+<body>
+	<div id="parent">
+		<div class="box sl-vc">
+			居中模块，通过margin负边距实现,此方法适用于块的高度和宽度固定
+		</div>
+	</div>
+</body>
+</html>

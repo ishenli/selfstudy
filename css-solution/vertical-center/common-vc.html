@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直居中</title>
+	<link rel="stylesheet" type="text/css" href="../base.css">
+	<style type="text/css">
+	#wrap{
+		width: 700px;
+		height: 500px;
+		border: 3px solid #ccc;
+		margin:0 auto;
+		display: table;
+		*position:relative;  
+	}
+	.sl-vc{
+		display: table-cell;
+		vertical-align: middle;
+		*position: absolute;
+		*top: 50%;
+	}
+	.cnt{
+
+		*position: relative;/*for ie6-7*/
+		*top: -50%;/*for ie6-7*/
+	}
+	.box{
+		border: 3px solid red;
+		font: bold 23px/1.5 "Times New Roman", Times, serif;"
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class=" sl-vc">
+			<div class="box cnt">
+				<img src="align-middle.png"/>
+				<p>
+					居中模块，利用div的display:table,display:table-cell属性,此方法适用块的高度和宽度自定义
+				</p>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
