@@ -8,7 +8,6 @@ demo为common-vc.html
 
  <pre>
 position:absolute;left:50%;top:50%;
-margin-left:-元素自身宽度的一半;
 margin-top:-元素自身高度的一半;
  </pre>
 
