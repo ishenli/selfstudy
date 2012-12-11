@@ -18,9 +18,9 @@ margin-top:-元素自身高度的一半;
 
  <pre>
 &lt;div class="sl-vc" &gt; &lt;!-- sl前缀为解决方案的标记 --&gt;
-    &lt;div class="sl-vc-cnt"&gt;
+        &lt;div class="sl-vc-cnt"&gt;
               &lt;!-- your code --&gt;
-     &lt;/div&gt;
+        &lt;/div&gt;
 &lt;/div&gt; &lt;!-- .sl-vc --&gt;
  </pre>
 
