@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直+水平居中</title>
+	<link rel="stylesheet" type="text/css" href="../base.css">
+	<style type="text/css">
+	.wrap{
+		border: 3px solid red;
+		font: bold 23px/1.5 "Times New Roman", Times, serif;";
+		width: 700px;
+		height: 700px;
+	}	
+	.box{
+		border: 3px solid blue;
+		height: 100%;
+	}
+	.sl-hv{
+		border: 3px solid #ccc;
+		margin:0 auto;
+		display: table;
+		height: 100%;
+		overflow: hidden;
+		*position:relative;  
+	}
+	.sl-hv-box{
+		display: table-cell;
+		vertical-align: middle;
+		*position: absolute;
+		*top: 50%;
+	}
+	.sl-hv-cnt{
+
+		*position: relative;/*for ie6-7*/
+		*top: -50%;/*for ie6-7*/
+	}
+
+	</style>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="sl-hv" style="width:300px;">
+			<div class="sl-hv-box">
+				<div class="sl-hv-cnt">
+					<div class="box">
+						<p>
+						   垂直居中：利用div的display:table,display:table-cell属性,此方法适用块自定义的高度
+						</p>
+						<p>
+						   水平居中：在.sl-hv上添加固定宽度，利用margin：0 auto;居中
+						</p>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
