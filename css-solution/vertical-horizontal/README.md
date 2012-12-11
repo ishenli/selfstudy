@@ -1,26 +1,18 @@
 ##使用说明
-本解决方案提供垂直居中的两种解决方案，一种用于div宽高固定的常用方案，demo为margin-vc.html，另一种为div自定义宽高的兼容性方案
-demo为common-vc.html
+本解决方案提供水平+垂直居中的解决方案，自定义宽高，兼容主流浏览器
 
-### margin-vc.html 说明
+### vertical-horizontal.html 说明
 
-- [原理] 设定宽度和高度，父节点为 position:relative; CSS是这样写的:
+- [原理] 
+- 垂直居中：设定父元素的display：table，直接子元素为display：table-cell，vertical-align: middle;
+- 水平居中: 设定.sl-hv宽度，通过margin:0 auto 实现
 
- <pre>
-position:absolute;left:50%;top:50%;
-margin-left:-元素自身宽度的一半;
-margin-top:-元素自身高度的一半;
- </pre>
-
-### common-vc.html 说明
-
-- [原理] 设定父元素的display：table，直接子元素为display：table-cell，vertical-align: middle;:
-
- <pre>
-&lt;div class="sl-vc" &gt; &lt;!-- sl前缀为解决方案的标记 --&gt;
-        &lt;div class="sl-vc-cnt"&gt;
-              &lt;!-- your code --&gt;
-        &lt;/div&gt;
-&lt;/div&gt; &lt;!-- .sl-vc --&gt;
- </pre>
-
+```html
+<div class="sl-hv" style="width:300px;"><!-- 在此添加块的宽度，触发margin:auto,实现水平居中 -->
+  <div class="sl-hv-box">
+      <div class="sl-hv-cnt">
+           <!--此处添加代码 -->
+      </div>
+  </div>
+</div>
+```
