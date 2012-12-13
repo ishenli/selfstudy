@@ -9,4 +9,5 @@ seajs.use(['../src/gotop'], function(gotop) {
             speed:50,  //返回速度，默认1秒
             ease:'swing'  //jquery animate 效果，默认swing
         })
+});
 ````
