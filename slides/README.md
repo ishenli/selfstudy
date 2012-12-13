@@ -1,8 +1,5 @@
 # slides
 
-//第一次开始自己写的插件，基于jquery构建
-
------
 
 该模块的概要介绍。
 
@@ -14,4 +11,32 @@
 
 ## API
 
-需要提供 API 说明，属性、方法、事件等。
+####preload（boolean）
+设置为true时在图片幻灯片中预加载图片
+`````js
+new slides({
+  preload:true
+})
+`````
+####preloadImage（String）
+预加载图片所用的地址和名称
+`````js
+new slides({
+  preload:true,
+  preloadImage: '/img/loading.gif'
+})
+`````
+####generateNextPrev (boolean)
+自动生成前进后退按钮，默认为false
+`````js
+new slides({
+  generateNextPrev: true
+})
+`````
+####next (string)
+自定义后退按钮的样式，默认为'next'
+`````js
+new slides({
+   next: 'next'
+})
+`````
