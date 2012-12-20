@@ -1,9 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <title>垂直居中</title>
+    <link rel="stylesheet" type="text/css" href="../base.css">
+    <style type="text/css">
+        *{font-size:14px;}
+        .bg{background:#CCC; border:#999 solid 1px; line-height:18px; font-size:12px; margin:5px 0;}
+        .one {float: left; width: 100px; border: solid 1px red;}
+        .two {border: solid 1px red;}
+        * html .eg2 .two{height: 1px;}
+        * html .eg3 .one{ margin-right: -3px; }
+        * html .eg4 .two{ float: left; }
+    </style>
 </head>
 <body>
-
+<div class="bg">不指定高度，与文字产生3px间距</div>
+<div class="eg1">
+    <div class="one">hello</div>
+    <div class="two">hello</div>
+</div>
+<div class="bg">指定高度后，div间3px间距</div>
+<div class="eg2">
+    <div class="one">hello</div>
+    <div class="two">hello</div>
+</div>
+<div class="bg">[修复方法1]* html .one{ margin-right: -3px; }//仔细看两个边框加起来变成了1像素</div>
+<div class="eg3">
+    <div class="one">hello</div>
+    <div class="two">hello</div>
+</div>
+<div class="bg">[修复方法2]* html .two{ float: left; }//这个需要给右边的也定宽度</div>
+<div class="eg4">
+    <div class="one">hello</div>
+    <div class="two">hello</div>
+</div>
 </body>
 </html>
