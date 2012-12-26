@@ -1,25 +1,31 @@
 ##使用说明
-本解决方案提供垂直居中的两种解决方案，一种用于div宽高固定的常用方案，demo为margin-vc.html，另一种为div自定义宽高的兼容性方案
-demo为common-vc.html
+本解决方案提供在ie6中实现position:fixed的解决思路
 
-### margin-vc.html 说明
+### ie-fixed.html 说明
 
-- [原理] 设定宽度和高度，父节点为 position:relative; CSS是这样写的:
+- [原理] 通过hack技巧和css expression实现元素的position:fixed
+
+```html
+<div class="sl-fixed sl-fixed-top sl-fixed-right">
+   这个块固定在右上方
+   <code>class="sl-fixed sl-fixed-top sl-fixed-right"</code>.
+</div>
+```
+
+- 基本功能：
 
  <pre>
-position:absolute;left:50%;top:50%;
-margin-top:-元素自身高度的一半;
+.sl-fixed-top 相当于正常的 position:fixed; top:0; 
+.sl-fixed-bottom 相当于正常的 position:fixed;bottom:0px;
+.sl-fixed-left 相当于正常的 position:fixed;left:0px;
+.sl-fixed-right 相当于正常的 position:fixed;right:0;
  </pre>
 
-### common-vc.html 说明
+- 有一些需要注意的是:
 
-- [原理] 设定父元素的display：table，直接子元素为display：table-cell，vertical-align: middle;:
+ - 如果需要多个方向的固定位置，比如 top + right，需要加两个 class
+ - 如果加了 `.sl-fixed-top`, 那么就别给这个元素加 `top` 属性的值
+ - 为了不出现异常，这个只作为套用。比如要<code>top:30px</code> 的时候，请在 `.sl-fixed-top` 的子元素内设置
 
- <pre>
-&lt;div class="sl-vc" &gt; &lt;!-- sl前缀为解决方案的标记 --&gt;
-        &lt;div class="sl-vc-cnt"&gt;
-              &lt;!-- your code --&gt;
-        &lt;/div&gt;
-&lt;/div&gt; &lt;!-- .sl-vc --&gt;
- </pre>
+转自：[sofish](https://github.com/sofish/)
 
