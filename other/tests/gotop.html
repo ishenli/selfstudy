@@ -28,7 +28,7 @@
 </div>
 
 <!--- 底部信息---------------->
-<script type="text/javascript" src="../sea-modules/seajs/1.3.0/sea.js"></script>
+<script type="text/javascript" src="../../sea-modules/seajs/1.3.0/sea.js"></script>
 <script type="text/javascript">
     seajs.config({
         alias: {
@@ -36,7 +36,7 @@
         }
     });
 
-    seajs.use(['../src/gotop'], function(gotop) {
+    seajs.use(['../gotop'], function(gotop) {
         new gotop({
             element:'#back-to-top',//jquery 选择器元素
             start:200, //距离顶部距离，默认0
