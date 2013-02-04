@@ -1,0 +1,23 @@
+{
+    "name": "scroll",
+    "version": "1.0.0",
+    "root": "arale",
+    "description": "",
+    "homepage": "http://www.ishenli.com",
+    "author": "shenli",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ishenli/scroll/issues"
+    },
+    "bugs": {
+        "url": ""
+    },
+    "license": "MIT",
+    "dependencies": {
+		$:$
+    },
+    "tests": ["scroll"],
+    "output": {
+        "scroll.js": "."
+    }
+}
