@@ -17,11 +17,11 @@ define(function(require, exports, module) {
         calProgress(0,0);
     }
     var loopObject={start:0,end:10,current:0,interval:null};
-    function progress(){
+    function progressBar(){
         if(loopObject.current<=loopObject.end){
             calProgress(loopObject.current,loopObject.end);
             loopObject.current+=Math.random();
-            loopObject.interval=setTimeout(progress,700);
+            loopObject.interval=setTimeout(progressBar,700);
         }else{
             calProgress(loopObject.end,loopObject.end);
             loopObject.current=0;
@@ -29,11 +29,7 @@ define(function(require, exports, module) {
             setTimeout(hideProgressBar,500);
         }
     }
-    var obj={
-        do:progressBar
-    }
-    module.exports = function(){
-        progress();
-    };
+
+    module.exports = progressBar;
 });
 
