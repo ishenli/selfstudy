@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>滚动条</title>
+    <link rel="stylesheet" type="text/css" href="../../css-solution/base.css">
+    <style type="text/css">
+    #progressBar{
+        position: absolute;
+        width: 400px;
+        height: 35px;
+        background-color: #99ccff;
+        padding: 20px;
+        border-width: 2px;
+        border:1px solid #000;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+    }
+    #progressMsg{
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-size: 18px;
+    }
+    #sliderWrapper{
+        position: absolute;
+        left: 10px;
+        top: 40px;
+        width: 417px;
+        height: 15px;
+        border-color: #fff;
+        border: 1px solid #000;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    #slider{
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        width: 420px;
+        height: 15px;
+        clip: rect(0px ,0px,15px,0px);
+        background-color: #669;
+        text-align: center;
+        color: #fff;
+        font-size: 12px;
+    }
+    </style>
+</head>
+<body>
+    <div id="progressBar">
+        <div id="progressMsg">计算中……</div>
+        <div id="sliderWrapper">0%
+            <div id="slider">0%</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../sea-modules/seajs/1.3.0/sea.js"></script>
+    <script type="text/javascript">
+        seajs.use(['../src/progressBar'], function(pro) {
+           var obj=new pro();
+        })
+    </script>
+</body>
+</html>
