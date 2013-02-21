@@ -5,6 +5,7 @@ define(function(require, exports, module) {
 
     PSlides={
         initialize:function(options){
+            var self=this;
             scrollInBox=$(options.element);
             scrollImg=scrollInBox.children("img");
             scrollOutBox=scrollInBox.parent();
@@ -13,12 +14,29 @@ define(function(require, exports, module) {
             //copy the image into container
             scrollImgCopy.appendTo(scrollInBox);
             this.resetImg();
+            $(options.next).click(function(){
+                clearTimeout(self.timeout);
+                self.timeout = setInterval(function(){
+                    self.next();
+                },16);
+
+            });
+            $(options.prev).click(function(){
+                clearTimeout(self.timeout);
+                self.timeout = setInterval(function(){
+                    self.prev();
+                },16);
+
+            });
+            $(options.pause).click(function(){
+                clearTimeout(self.timeout);
+            });
 
         },
         resetImg:function(){
             var picListItemLink=$("#picListItem li a");
             var oThis = this,imgUrl=picListItemLink[1].getAttribute("imgurl");
-            console.info(imgUrl);
+//            console.info(imgUrl);
             scrollImg.attr("src",imgUrl);
             scrollImgCopy.attr("src",imgUrl);
             var resetImg = new Image();
@@ -46,8 +64,16 @@ define(function(require, exports, module) {
             }
 //            console.info(scrollInBox.position().left);
             scrollInBox.css("left",scrollInBox.position().left-1);
+        },
+        next:function(){
+            if(parseFloat(scrollInBox.position().left)>(-scrollImg.width()+parseFloat(scrollOutBox.width()))){
+                scrollInBox.css("left",function(){
+                    return parseFloat(scrollInBox.position().left-scrollImg.width());
+                })
+            }
+//            console.info(scrollInBox.position().left);
+            scrollInBox.css("left",scrollInBox.position().left+1);
         }
-
     }
     module.exports = PSlides;
 });
