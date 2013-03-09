@@ -1,4 +1,4 @@
-define("arale/position/1.0.0/position-debug", ["$-debug"], function(require, exports) {
+ define("arale/position/1.0.0/position-debug", ["$-debug"], function(require, exports) {
 
     // Position
     // --------

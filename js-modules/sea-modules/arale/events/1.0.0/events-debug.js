@@ -36,7 +36,7 @@ define("arale/events/1.0.0/events-debug", [], function() {
     while (event = events.shift()) {
       list = cache[event] || (cache[event] = [])
       list.push(callback, context)
-    }
+     }
 
     return this
   }
