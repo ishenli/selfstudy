@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文本溢出方案</title>
+    <meta charset="UTF-8">
+    <link href="../base.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        .wrap{
+            width: 20em;
+            height: 1.3em;
+            overflow: hidden;
+            zoom: 1;
+        }
+        .ui-overflow{
+            width: 20em;
+            height: 1.3em;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            -o-text-overflow:ellipsis;
+            overflow: hidden;
+
+        }
+        .sl-overflow{
+            width: auto;
+            float: left;
+            height: 1.3em;
+            overflow: hidden;
+            margin-right: 3em;
+        }
+        .sl-overflow-txt{
+            float: right;
+            width: 3em;
+            height: 1.31em;
+            margin-top: -1.3em;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="ui-overflow">
+            这是一段比较长的文字，用来测试是否文字溢出时会用省略号显示。
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="sl-overflow">
+            这是一段比较长的文字，用来测试是否文字溢出时会用省略号显示。
+        </div>
+        <div class="sl-overflow-txt">...</div>
+    </div>
+</body>
+</html>
