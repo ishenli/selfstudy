@@ -13,7 +13,7 @@ margin-top:-元素自身高度的一半;
 
 ### common-vc.html 说明
 
-- [原理] 设定父元素的display：table，直接子元素为display：table-cell，vertical-align: middle;:
+- [原理] 该方法不适用于ie6和ie7，设定父元素的display：table，直接子元素为display：table-cell，vertical-align: middle;:
 
  <pre>
 &lt;div class="sl-vc" &gt; &lt;!-- sl前缀为解决方案的标记 --&gt;
