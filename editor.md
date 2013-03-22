@@ -1,151 +1,80 @@
-##hasLayout的常见问题
-本文接着上文（[关于hasLayout（一）](http://www.ishenli.com/?p=208)）,按照具体事例来分析hasLayout的问题。
+CSS选择符由一些初始化参数组成，这些参数指明了要应用这个CSS规则的页面元素。作为一个网站的前端开发工程师，应该避免编写一些常见的开销很大的CSS选择符模式，尽量编写高效的CSS选择符，从而加快页面的渲染速度，缩短页面呈现时间。
+  
+我们先来看一下safari和webkit的架构师David Hyatt的两段话：
 
-####1.自动拓展高度和宽度
-浮动元素会自动被具有hasLayout的祖先元素所自动包含。其最典型的元素是：ie6会自动扩展已包含溢出的元素。例如以下代码
-```html
-#float1{
-  width:400px;//for hasLayout
-}
-.sample1{
-  width:200px;
-  height:60px;
-  float:left;
-  background:#fc6;
-  +display:inline;/*解决ie6双倍边距*/
-}
-<div id="float1">
-  <p class="sample1">浮动的p</p>
-  <p>不浮动的p</p>
-</div>
+样式系统从最右边的选择符开始向左进行匹配规则。只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到
+和规则匹配的元素，或者因为不匹配而退出。
+如果你非常在意页面的性能那千万别使用CSS3选择器。实际上，在所有浏览器中，用 class 和 id 来渲染，比那些使用同胞，后代选
+择器，子选择器（sibling, descendant and child selectors）对页面性能的改善更值得关注。
+
+#####Google 资深web开发工程师Steve Souders对CSS选择器的效率从高到低做了一个排序：
+1. id选择器（#myid)
+2. 类选择器（.myclassname）
+3. 标签选择器（div,h1,p）
+4. 相邻选择器（h1+p）
+5. 子选择器（ul > li）
+6. 后代选择器（li a）
+7. 通配符选择器（*）
+8. 属性选择器（a[rel="external"]）
+9. 伪类选择器（a:hover,li:nth-child）
+
+上面九种选择器中ID选择器的效率是最高，而伪类选择器的效率则是最底。详细的介绍大家还可以点击[Writing efficient CSS selectors](https://developer.mozilla.org/en-US/docs/CSS/Writing_Efficient_CSS?redirectlocale=en-US&redirectslug=Writing_Efficient_CSS)
+
+综合上面的顺序，我们清楚的知道
+
+#####id和类名用于关键选择器上效率是最高的，而CSS3的仿伪类和属性选择器，虽然使用方便，但其效率却是最低的。
+
+知道了基本原理以后，我们编写CSS时就应该注意了。下面举几个例子，让大家理解的更透彻一些：
+
+####1.不要在编写id规则时用标签名或类名
 ```
-#####ie6/ie7的效果
+BAD：div#test{} 以及 .new#testNew{}
 
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2FQQ%E6%88%AA%E5%9B%BE20130318153430.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:3MdTW%2BaWEyN65j6PgzzlToUAdMQ%3D"/>
-
-具有haslayout的元素的高度会包含浮动的子元素
-
-#####ie8+/标准浏览器的效果
-
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2F1.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:ehH6gErnxivLL7Lth9ZLiQe6P1k%3D"/>
-
-height属性为auto，高度不包含浮动的子元素
-
-这种情况在通过float布局时经常遇到，往往我们希望可以到达ie6/7所示的效果，防止父元素的高度塌陷。
-
-####2.浮动元素旁边的元素
-浮动元素旁的块级元素还是会独占一行，但是其内的行框缩短以容纳浮动元素，因此其文字的高度大于浮动元素，高出部分的内容在浮动元素的下方显示。例如以下代码
-```html
-*{
-  	margin: 0;
-		padding: 0;
-	}
-	#float1{
-	  width:400px;
-	  background-color: green;
-	}
-	.sample1{
-	  width:200px;
-	  height:60px;
-	  float:left;
-	  background:#fc6;
-	  +display:inline;/*解决ie6双倍边距*/
-	}
-	.sample2{
-		height: 100%;
-	}
-<div id="float1">
-    <p class="sample1">浮动的p</p>
-    <p class="sample2">不浮动的p,不浮动的p不浮动的p不浮动的p不浮
-    动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p</p>
-</div>
+GOOD：#backButton {…} , #testNew{}
 ```
-#####ie6/ie7的效果
+由于样式系统从最右边的选择符开始向左进行匹配，只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出，所以，在button#backButton {…}中，样式系统先找到id为backButton的元素，然后继续向左匹配，查看该元素的标签名是不是button，如果不是，查找下一个id为backButton的元素，再检查这个元素的标签名，如此周而复始，直到到达文档末尾。如果只是#backButton {…}，则样式系统找到id为backButton的元素后，因为左边没有其他选择符了，它就退出而结束查找了。
 
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Ffloattext7.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:XIibWGvf4PbU0LHElrncvY5BOKg%3D"/>
+另外，根据HTML规范，id在HTML中是唯一的，也就是说一个HTML页面只限定有一个id为“XX”的元素，而不限制拥有这个ID元素的标签名，所以,在button#backButton {…}中,button标签完全是无意义的，可以，而且应该去掉，button#backButton {…}与#backButton {…}是等价的。在#backButton前多写了button,只会引起样式系统向左移动，继续查找页面元素，损耗页面性能，延长页面渲染时间。
 
-ie将不浮动元素的框压缩，元素框整体右移，好像他也是一个浮动元素一样，因此文中的字就不再环绕左浮动的元素了（形成一个矩形区域，保持在它的右边）。
 
-#####ie8+/标准浏览器的效果
-
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Ffloattext8.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:4YCirb465IlL%2Bp8HHjgi42IycgI%3D"/>
-
-不浮动的元素仍会独占一行
-
-同样会受到影响的还有相对定位的元素。相对定位的元素应该参照其静态偏移量来进行定位，但是在ie6/7中，偏移是从浮动元素的右边距开始算起。如以下代码
-```html
-*{
-  	margin: 0;
-		padding: 0;
-	}
-	#float1{
-	  width:400px;
-	  background-color: green;
-	}
-	.sample1{
-	  width:200px;
-	  height:60px;
-	  float:left;
-	  background:#fc6;
-	  +display:inline;/*解决ie6双倍边距*/
-	}
-	.sample2{
-		height: 100%;
-		background-color: orange;
-	position: relative;
-	left: 20px;
-	}
-  <div id="float1">
-    <p class="sample1">浮动的p</p>
-	  <p class="sample2">不浮动的p,不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p不浮动的p
-    不浮动的p不浮动的p不浮动的p不浮动的p</p>
-	</div>
+####2.不要在编写class规则时用标签名
 ```
-#####ie6/ie7的效果
+BAD：treecell.indented {…}
 
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Fposition8.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:9zP56drHEj%2F3CzrMZZ6S6Ub2uSc%3D"/>
+GOOD：.treecell-indented {…} //语言化和标签名绑在一起 假设treecell
 
-偏移的距离如红框所示
-
-#####ie8+/标准浏览器的效果
-
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Fposition7.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:STld6w5V4HxtBrSYm10WIgoMz9o%3D"/>
-
-定位自身元素为起点
-
-####3.未定义宽度的浮动元素
-如果一个<strong style="color:red">浮动</strong>元素未定义宽度，那么这个元素将会被压缩，宽度由其包含的内容来决定。但是，对于ie6，如果子元素有haslayout，元素的宽度将会被撑到可以容纳它的最大宽度。如以下代码：
-```html
-#div1 {
-  	width: 400px;
-		height: 100px;
-		background-color: green;
-	}
-	.sample1{
-		margin: 5px;
-	  float:left;
-	  background:#fc6;
-	  +display:inline;/*解决ie6双倍边距*/
-	}
-	.sample1 strong{
-		display: block;
-		height: 100%;/*for haslayout*/
-	}
-<div id="div1">
-    <p class="sample1">浮动的p</p>
-	  <p class="sample1">浮动的p,<strong>子元素具有hasLayout</strong>浮动的p,浮动的p</p>
-	</div>
+BEST：.hierarchy-deep {…} //语言化和标签名无关
 ```
-#####ie6的效果
+####3.把多层标签选择规则用class规则替换，减少css查找
+```
+BAD：treeitem[mailfolder="true"] > treerow > treecell {…}
 
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Fnowidth6.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:jY95fhGLYXUDMO70Mevh7uyc7js%3D"/>
+GOOD：.treecell-mailfolder {…}
+```
 
-ie6内具有layout的子元素会将浮动元素撑开
+####4.避免使用子选择器
+现在我们来看看David Hyatt的第3段话：后代选择器在CSS中是最昂贵的选择器。贵得要命——尤其是把它和标签或通配符放在一起！
+```
+BAD：treehead treerow treecell {…}
 
-#####ie8+/标准浏览器的效果
+BETTER, BUT STILL BAD (see next guideline)：treehead > treerow > treecell {…}
+```
 
-<img src="http://bcs.duapp.com/wordpressblog/hasLayout%2Fnowidth8.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:eY9qTcTLWm9tIycv2BhMUjAuEv8%3D"/>
+####标签后面最好永远不要再增加子选择器
+```
+BAD：treehead > treerow > treecell {…}
+GOOD：.treecell-header {…}
+BAD：treeitem[IsImapServer="true"] > treerow > .tree-folderpane-icon {…}
+GOOD：.tree-folderpane-icon[IsImapServer="true"] {…}
+```
 
-未设定宽度的浮动将会被正确压缩
+####5.依靠继承
+```
+BAD：#bookmarkMenuItem > .menu-left { list-style-image: url(blah) }
 
+GOOD：#bookmarkMenuItem { list-style-image: url(blah) }
+```
 
+最后，我们来做个总结，网站编写CSS时，应该优先考虑使用class选择器，避免使用通配符选择器（*）和属性选择器（a[rel="external"]），后代选择器与标签选择器结合使用也应避免。使用id选择器的性能最好，但是编写时要注意其唯一性，谨慎使用。CSS3选择器（例如：:nth-child(n)第n个孩子）在帮助我们锁定我们想要的元素的同时保持标记的干净和语义化，但事实是，这些花哨的选择器让更多的浏览器资源被密集使用。引用David Hyatt关于CSS3选择器的论述：如果你关心页面性能的话，他们真不该被使用！
+
+原文链接：[网站CSS选择器性能讨论](http://www.aliued.cn/2013/01/24/%E7%BD%91%E7%AB%99css%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%A7%E8%83%BD%E8%AE%A8%E8%AE%BA.html)
