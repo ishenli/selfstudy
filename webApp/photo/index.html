@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基于html5的在线滤镜 by 沈礼</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="alloyImage.js"></script>
+    <style type="text/css">
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+            margin:0;padding:0;
+        }
+        html, body {
+            background: url(images/bg/cardboard.png);
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            min-width: 1003px;
+            color: #fff;
+            font-family: Microsoft Yahei,"宋体";
+            overflow: hidden;
+        }
+        .scrollbar::-webkit-scrollbar {
+            height: 16px;
+            overflow: visible;
+            width: 16px;
+        }
+        .scrollbar-borderless.scrollbar::-webkit-scrollbar-thumb {
+            border-width: 0 1px 0 6px;
+        }
+        .scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(255,252,252,.2);
+            background-clip: padding-box;
+            border: solid transparent;
+            border-width: 1px 1px 1px 6px;
+            min-height: 28px;
+            padding: 100px 0 0;
+            box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+        }
+        .clearfix{ content: ''; height: 0; display: block; visibility: hidden; overflow: hidden; clear: both; }
+
+        .clearfix{ *zoom: 1; }
+        .ui-button{padding:0;display:inline-block;position:relative;text-align:center;text-decoration:none!important;vertical-align:middle;overflow:visible;cursor:pointer}
+        div.ui-button,p.ui-button,span.ui-button{*display:inline}
+        .ui-button-text{display:block;cursor:pointer;border:0;text-decoration:none;overflow:visible}
+        .ui-button a.ui-button-text:hover{text-decoration:none}
+        .ui-button input.ui-button-text,.ui-button button.ui-button-text{*display:inline}
+        .ui-button-lwhite,.ui-button-lwhite:hover,.ui-button-mwhite,.ui-button-mwhiter:hover,.ui-button-swhite,.ui-button-swhite:hover,.ui-button-text{background-image:url(https://img.alipay.com/sys/personal/nav/global-button.png);background-repeat:no-repeat;background-color:transparent}
+        .ui-button-lwhite .ui-button-text,.ui-button-mwhite .ui-button-text,.ui-button-swhite .ui-button-text{font-family:verdana,\5b8b\4f53,\9ED1\4F53,sans-serif;font-size:14px;font-weight:700}
+        .ui-button-lwhite{background-position:0 -89px}
+        .ui-button-lwhite .ui-button-text{padding:8px 20px;background-position:right -266px;color:#595959}
+        .ui-button-lwhite:hover{background-position:0 -133px}
+        .ui-button-lwhite:hover .ui-button-text{background-position:right -310px}
+        .ui-button-mwhite{background-position:0 -429px}
+        .ui-button-mwhite .ui-button-text{padding:5px 22px 6px 22px;background-position:right -577px;color:#595959}
+        .ui-button-mwhite:hover{background-position:0 -466px}
+        .ui-button-mwhite:hover .ui-button-text{background-position:right -614px}
+        .ui-button-swhite{background-position:0 -711px}
+        .ui-button-swhite .ui-button-text{padding:3px 12px 4px 12px;font-size:12px;background-position:right -831px;color:#595959}
+        .ui-button-swhite:hover{background-position:0 -741px}
+        .ui-button-swhite:hover .ui-button-text{background-position:right -861px}
+        .ui-button-lwhite input.ui-button-text,.ui-button-mwhite input.ui-button-text,.ui-button-swhite input.ui-button-text{*overflow:visible}
+        .ui-button-lorange,.ui-button-lorange:hover,.ui-button-morange,.ui-button-morange:hover,.ui-button-sorange,.ui-button-sorange:hover,.ui-button-text{background-image:url(https://img.alipay.com/sys/personal/nav/global-button.png);background-repeat:no-repeat;background-color:transparent}
+        .ui-button-lorange .ui-button-text,.ui-button-morange .ui-button-text,.ui-button-sorange .ui-button-text{font-family:verdana,\5b8b\4f53,\9ED1\4F53,sans-serif;font-size:14px;font-weight:700}
+        .ui-button-lorange{background-position:0 0}
+        .ui-button-lorange .ui-button-text{padding:8px 20px;background-position:right -177px;color:#fff}
+        .ui-button-lorange:hover{background-position:0 -45px}
+        .ui-button-lorange:hover .ui-button-text{background-position:right -222px}
+        .ui-button-morange{background-position:0 -355px}
+        .ui-button-morange .ui-button-text{padding:5px 22px 6px 22px;background-position:right -503px;color:#fff}
+        .ui-button-morange:hover{background-position:0 -392px}
+        .ui-button-morange:hover .ui-button-text{background-position:right -540px}
+        .ui-button-sorange{background-position:0 -651px}
+        .ui-button-sorange .ui-button-text{padding:3px 12px 4px 12px;font-size:12px;background-position:right -771px;color:#fff}
+        .ui-button-sorange:hover{background-position:0 -681px}
+        .ui-button-sorange:hover .ui-button-text{background-position:right -801px}
+        .ui-button-lorange input.ui-button-text,.ui-button-morange input.ui-button-text,.ui-button-sorange input.ui-button-text{*overflow:visible}
+        .ui-button-ldisable,.ui-button-mdisable,.ui-button-sdisable,.ui-button-text{background-image:url(https://img.alipay.com/sys/personal/nav/global-button.png);background-repeat:no-repeat;background-color:transparent}
+        .ui-button-ldisable .ui-button-text,.ui-button-mdisable .ui-button-text,.ui-button-sdisable .ui-button-text{font-family:verdana,\5b8b\4f53,\9ED1\4F53,sans-serif;font-size:14px;font-weight:700;color:#e6e6e6;cursor:text}
+        .ui-button-ldisable{background-position:0 -1021px}
+        .ui-button-ldisable .ui-button-text{padding:8px 20px 9px 20px;background-position:right -1063px}
+        .ui-button-mdisable{background-position:0 -891px}
+        .ui-button-mdisable .ui-button-text{padding:6px 22px 6px 22px;*padding:5px 22px 5px 22px;background-position:right -927px}
+        .ui-button-sdisable{background-position:0 -962px}
+        .ui-button-sdisable .ui-button-text{padding:3px 12px 4px 12px;font-size:12px;background-position:right -991px}
+        .ui-button-ldisable input.ui-button-text,.ui-button-mdisable input.ui-button-text,.ui-button-sdisable input.ui-button-text{*overflow:visible}
+        .ui-button-lblue,.ui-button-lblue:hover,.ui-button-mblue,.ui-button-mblue:hover,.ui-button-lblue .ui-button-text,.ui-button-mblue .ui-button-text,.ui-button-lblue:hover .ui-button-text,.ui-button-mblue:hover .ui-button-text{background-image:url(https://i.alipayobjects.com/e/201204/2vCVR5Bh4d.png);background-repeat:no-repeat;background-color:transparent}
+        .ui-button-lblue .ui-button-text,.ui-button-mblue .ui-button-text{font-family:verdana,\5b8b\4f53,\9ED1\4F53,sans-serif;font-size:14px;font-weight:700}
+        .ui-button-lblue{background-position:0 -1105px}
+        .ui-button-lblue .ui-button-text{padding:10px 20px;background-position:right -1205px;color:#fff}
+        .ui-button-lblue input.ui-button-text,.ui-button-lblue button.ui-button-text{height:41px}
+        .ui-button-lblue:hover{background-position:0 -1155px}
+        .ui-button-lblue:hover .ui-button-text{background-position:right -1255px}
+        .ui-button-mblue{background-position:0 -1305px}
+        .ui-button-mblue .ui-button-text{padding:7px 22px 8px;background-position:right -1405px;color:#fff}
+        .ui-button-mblue input.ui-button-text,.ui-button-mblue button.ui-button-text{height:35px}
+        .ui-button-mblue:hover{background-position:0 -1355px}
+        .ui-button-mblue:hover .ui-button-text{background-position:right -1455px}
+        .ui-button-lblue input.ui-button-text,.ui-button-mblue input.ui-button-text{*overflow:visible}
+        .container{
+            display: block;
+            z-index: 1002;
+            outline: 0px;
+            height: auto;
+            width: 750px;
+            top: 134px;
+            left: 408px;
+        }
+        .ui-dialog {
+            position: absolute;
+            width: 540px;
+            border: 1px solid #eee;
+            background-color: #fff;
+            color: #000;
+            box-shadow: 0 10px 30px #656565;
+        }
+        .upload-dialog{
+            margin: 20px;
+            overflow: hidden;
+        }
+        .drop-area {
+            height: 300px;
+            font-size: 20px;
+            text-align: center;
+            border: 1px dashed gray;
+        }
+        .drop-area p {
+            margin-top: 120px;
+        }
+        .effects{
+            float: right;
+            height: 450px;
+            overflow-y: scroll;
+        }
+        .effects li {
+            margin-left: 0;
+            border-top: 1px solid #282B2F;
+            border-bottom: 1px solid #575C62;
+            list-style: none;
+            transition: all ease-in .2s;
+            -webkit-transition: all ease-in .2s;
+            height: 80px;
+            overflow: hidden;
+        }
+        .imgWrapper {
+            margin: 0px;
+            padding: 0;
+            line-height: 80px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            width: 150px;
+            transition: all ease-in .2s;
+            -webkit-transition: all ease-in .2s;
+            position: relative;
+            height: 80px;
+            cursor: pointer;
+        }
+        .imgWrapper img {
+            margin: 0;
+            width: 60px;
+            height: 60px;
+            right: 20px;
+            top: 10px;
+            position: absolute;
+            border: none;
+            border-radius: 10px;
+            z-index: 3;
+            cursor: pointer;
+        }
+        .footer{
+            margin: 20px;
+        }
+        #downloadBtn{
+            float: right;
+            margin-right: 20px;
+        }
+        .open{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="ui-dialog">
+        <div class="upload-dialog">
+            <P>该应用支持最新的谷歌和火狐浏览器</P>
+            <div class="section-panel" >
+                <div class="drop-area" id="html5Select">
+                    <p>将文件拖拽到此处上传<br>
+                        <span>(您的浏览器支持此拖拽功能)</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="ui-button ui-button-mblue" id="chooseImg">
+                <span class="ui-button-text">选择图片</span>
+            </div>
+            <a href="#" id="downloadBtn" class="ui-button ui-button-mdisable">
+                <span class="ui-button-text">查看处理结果</span>
+            </a>
+        </div>
+        <input type="file" name="open" id="open" class="open">
+    </div>
+    <div class="effects scrollbar scrollbar-borderless" id="effects">
+
+    </div>
+</div>
+<script type="text/javascript" src="http://demo.36ria.com/html5/instagram-filter-app/assets/js/filereader.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        var	maxWidth = 500, maxHeight = 500;
+        var photo = $('#html5Select');
+        photo.fileReaderJS({
+            on:{
+                load: function(e, file){
+                    //向拖拽容器添加一个图片元素
+                    var img = $('<img id="pic">').appendTo(photo),
+                            imgWidth, newWidth,
+                            imgHeight, newHeight,
+                            ratio,first=true;
+                    img.load(function() {
+                        imgWidth  = this.width;
+                        imgHeight = this.height;
+                        if(first)
+                        {
+                            $("#pic").attr("data-url",$(this).attr("src"));
+                            $("#html5Select p").hide();
+                            first=false;
+                        }
+                        // 控制在500*500px
+                        if (imgWidth >= maxWidth || imgHeight >= maxHeight) {
+                            if (imgWidth > imgHeight) {
+                                //ratio是希望处理图片时，依旧可以保证比例的正确
+                                ratio = imgWidth / maxWidth;
+                                newWidth = maxWidth;
+                                newHeight = imgHeight / ratio;
+
+                            } else {
+                                ratio = imgHeight / maxHeight;
+                                newHeight = maxHeight;
+                                newWidth = imgWidth / ratio;
+                            }
+
+                        } else {
+                            newHeight = imgHeight;
+                            newWidth = imgWidth;
+                        }
+                        $("#downloadBtn").attr("href",$("#pic").attr("src"));
+                    });
+                    // 设置图片的src，直接读取二进制图片数据 触发img的load事件
+                    img.attr('src', e.target.result);
+                    $("#downloadBtn").removeClass("ui-button-mdisable").addClass("ui-button-morange");
+                }
+            }
+        });
+    }
+
+            )();
+    function chooseImage(){
+        $("#chooseImg").on("click",function(){
+            var n=document.getElementById("pic");
+            if(n){ n.parentNode.removeChild(n); }
+            document.getElementById("open").click();
+
+        });
+        $("#open").on("change",function(e){
+            var reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+
+            reader.onload = function(){
+                var img=$('<img id="pic">').appendTo($('#html5Select'));
+                img.attr("src", this.result);
+                $("#pic").attr("data-url",img.attr("src"));
+                $("#html5Select p").hide();
+                $("#downloadBtn").removeClass("ui-button-mdisable").addClass("ui-button-morange");
+                img.on("load",function(){
+                    $("#downloadBtn").attr("href",$("#pic").attr("src"));
+                })
+            };
+        });
+    }
+    var main={
+        img:null,
+        showEffects:function(){
+            var EasyReflection = {
+                "美肤" : "softenFace",
+                "素描" : "sketch",
+                "自然增强" : "softEnhancement",
+                "紫调" : "purpleStyle",
+                "柔焦" : "soften",
+                "复古" : "vintage",
+                "黑白" : "gray",
+                "仿lomo" : "lomo",
+                "亮白增强" : "strongEnhancement",
+                "灰白" : "strongGray",
+                "灰色" : "lightGray",
+                "暖秋" : "warmAutumn",
+                "粗糙" : "carveStyle"
+            };
+            var effectModel = '<li class="e_item"><div class="imgWrapper"><img src="images/{pic}.png" alt="" data-role="{ps}">{effect}</div></li>';
+            var html = '<li class="e_item"><div class="imgWrapper"><img src="images/1.jpg" alt="" data-role="old"/>原图</div></li>';
+            for(var i in EasyReflection){
+                html += effectModel.replace("{effect}",i.length < 3 ? i + "效果" : i).replace("{ps}", EasyReflection[i]).replace("{pic}",EasyReflection[i]);
+            }
+
+            document.getElementById("effects").innerHTML = html;
+        },
+        bindImageClick:function(){
+            $(".effects li").on("click",function(){
+                var img,effect,pic=document.getElementById("pic");
+                if(!pic) {
+                    alert("请选择图片");
+                    return false;
+                }
+                img = $(this).find("img");
+                effect= img.attr("data-role");
+                if(effect==="old"){
+                    console.log("old");
+                    pic.src=pic.getAttribute("data-url");
+                }else{
+                    AlloyImage(pic).ps(effect).replace(pic);
+                }
+            });
+        }
+
+    }
+    $(document).ready(function(){
+        main.showEffects();
+        main.bindImageClick();
+        chooseImage();
+    });
+</script>
+</body>
+</html>
