@@ -2,7 +2,7 @@
 
 -----
 
-沈礼的自学项目（个人博客： <http://shenli.duapp.com>）
+沈礼的自学项目（个人博客： <http://www.ishenli.com>）
 
 ##Web前端解决方案
 
