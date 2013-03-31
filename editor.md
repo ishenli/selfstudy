@@ -32,7 +32,11 @@ $("#id").fileReaderJS({
 var pic=document.getElementById("pic");
 
 AlloyImage(pic).ps(effect).replace(pic);//effect 为效果参数
+```
 
+effect目前包含以下几种效果
+
+```js
 var effects = {
      "美肤" : "softenFace",
      "素描" : "sketch",
