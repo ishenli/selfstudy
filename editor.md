@@ -14,6 +14,43 @@
 ###app功能
 app主要包含对图片的美化功能，包含一系列的滤镜功能，现阶段主要包括美肤，素描，自然增强，紫调，柔焦，复古，黑白，仿lomo，亮白增强，
 等。
- 
+
+###源码分析
+图片的上传功能主要包含两部分，拖拽上传和手动选择上传。拖拽上传通过fileReaderJS类库实现,通过on方法绑定各种事件.
+源码如下:
+```js
+$("#id").fileReaderJS({
+   on:{
+       load: function(e, file){
+         //do something
+         }
+     }
+})
+```
+图片上传完成以后,通过document.getElementById的方法获取该图片元素,调用alloyImage的ps方法进行图片的滤镜处理
+```js
+var pic=document.getElementById("pic");
+
+AlloyImage(pic).ps(effect).replace(pic);//effect 为效果参数
+
+var effects = {
+     "美肤" : "softenFace",
+     "素描" : "sketch",
+     "自然增强" : "softEnhancement",
+     "紫调" : "purpleStyle",
+     "柔焦" : "soften",
+     "复古" : "vintage",
+     "黑白" : "gray",
+     "仿lomo" : "lomo",
+     "亮白增强" : "strongEnhancement",
+     "灰白" : "strongGray",
+     "灰色" : "lightGray",
+     "暖秋" : "warmAutumn",
+     "粗糙" : "carveStyle"
+};
+```
+
+###todo
+
 
 
