@@ -1,6 +1,10 @@
 ##webApp
-最近又看了html5的一些资料，对于新的功能非常有兴趣。然而在平常的项目练习中，鲜有机会可以尝试最新的html5技术，因此希望可以通过构建一个html应用，
-来更好的把握此项技术。在alloyTeam看到一个开源的html5图像处理js类库，完全可以以此构建在线的“美图秀秀”。
+最近又看了html5的一些资料，对于新的功能非常感兴趣。然而在平常的项目练习中，鲜有机会可以尝试最新的html5技术，因此希望可以通过构建一个html应用，
+来更好的把握此项技术。在alloyTeam看到一个开源的html5图像处理js类库，完全可以依靠它构建在线的“美图秀秀”。
+
+效果图:
+
+<img src="http://bcs.duapp.com/wordpressblog/blog%2Fphoto.jpg?sign=MBO:37605d0593028e53e3128f4dd3e3e64b:AtsPeH5GeK3Glhd9gFHWB3VZkoA%3D"/>
 
 ###构建平台
 本应用是通过百度的bae作为构建平台，由于作为一个webApp模式，无需后台数据库支持。
@@ -54,7 +58,10 @@ var effects = {
 };
 ```
 
-###todo
+###应用场景
+该应用可用于常用的图片滤镜处理,作为webApp,无需在电脑本地安装常用的图像美化软件,只需一个支持html5的浏览器即可。目前支持的浏览器主要包括
+google的google chrome，firefox（火狐），opera，ie浏览器版本需在ie9以上。
 
+####demo访问地址:[在线滤镜](http://lvjing.duapp.com/)
 
 
