@@ -1,0 +1,53 @@
+ 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>documentReady实现</title> 
+<script type="text/javascript" src="jquery.js"></script> 
+
+</head> 
+<body> 
+<script type="text/javascript">
+	var whenReady=(function(){
+		var funs=[],ready=false;
+		function handler(e){
+			var e=e||window.event;
+			if(ready)return;
+			if(e.type==="readystatechange"&&document.readyState!=="complete") return;
+			for(var i=0;i<funs.length;i++){
+				funs[i].call(document);
+			}
+			ready=true;
+			funs=null
+		}
+		console.log("whenReady going~~~~")
+		if(document.addEventListener){
+			document.addEventListener("DOMContentLoaded",handler,false);
+			document.addEventListener("readystatechange",handler,false);
+			window.addEventListener("load",handler,false);
+		}else if(document.attachEvent){
+			document.attachEvent("onreadystatechange",handler);
+			window.attachEvent("onload",handler);
+		}
+		return function (f){
+			if(ready) f.call(document);
+				else funs.push(f);
+
+		}
+	}());
+	function first(){
+		for(var i=0;i<150;i++){
+			console.log("hello")
+		}
+	}
+	function second(){
+		for(var i=0;i<150;i++){
+			console.log("fuck")
+		}
+	}
+	whenReady(first);
+	whenReady(second);
+</script>
+</body> 
+</html> 

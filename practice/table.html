@@ -1,0 +1,57 @@
+ 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>js创建表格，背景颜色随机</title> 
+<script type="text/javascript" src="jquery.js"></script> 
+
+</head> 
+<body> 
+<input type="text" id="row">
+<input type="text" id="col">
+<input type="submit" id="submit" value="go"/>
+<div id="table"></div>
+<script type="text/javascript">
+	function createTable(row,col,obj){
+		this.a=row;
+		this.b=col;
+		this.tablePanel=obj;
+		var table=document.createElement("table"),
+			tbody=document.createElement("tbody"),
+			trs,tds;
+		for(var i=0;i<this.a;i++){
+			trs=document.createElement("tr");
+			for(var j=0;j<this.b;j++){
+				tds=document.createElement("td");
+				console.log(this.getColor());
+				tds.style.backgroundColor=this.getColor();
+				tds.innerHTML="1";
+				trs.appendChild(tds);
+			}
+			tbody.appendChild(trs);
+
+		}
+		table.appendChild(tbody);
+		this.tablePanel.appendChild(table);
+	}
+
+	createTable.prototype={
+		getColor:function(){
+			var strs="01234567890abcdef",res="#";
+			for(var j=0;j<6;j++) {
+				res+=strs.charAt(Math.random()*strs.length);
+			}
+			return res;
+		}
+	}
+	document.getElementById("submit").onclick=function(){
+		var row=document.getElementById("row").value,
+			col=document.getElementById("col").value,
+			tablePanel=document.getElementById("table");
+			new createTable(row,col,tablePanel); //因为createTable为构造函数，所以用new返回this
+	}
+</script> 
+ 
+</body> 
+</html> 
