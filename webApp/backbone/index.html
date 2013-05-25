@@ -28,15 +28,14 @@
         }
     });
 
-//    var person = new Person;
+    var person = new Person;
      var Template= Backbone.View.extend({
-         model:Person,
          initialize:function(){
              this.render();
          },
          render:function(){
-             var Person={name:"shenli"};
-             var template= _.template($("#search_template").html(),Person);
+
+             var template= _.template($("#search_template").html(),person.toJSON());
              this.$el.html(template);
          }
      });
