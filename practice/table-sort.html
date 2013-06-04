@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>实现outerHTML</title>
+</head>
+<body>
+<input type="button" value="矮油" id="aiyou"/>
+<table>
+<tbody>
+<tr><td class="n1">111</td>
+<td class="n2">222</td>
+<td class="n3">333</td>
+<td class="n4">444</td>
+</tr></tbody>	
+</table>
+	<script type="text/javascript">
+		function outerHTML(){
+			if(document.createElement("div").outerHTML) return;
+			function outerHTMLGetter(){
+				var container=document.createElement("div");
+				container.appendChild(this.clondNode(true));
+				return container.innerHTML;
+			}
+		}
+	</script>
+</body>
+</html>

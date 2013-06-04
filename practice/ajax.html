@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{ padding:0; margin:0; font-size:12px;}
+#person{ width:500px; margin:50px auto;}
+body{ background:#000;}
+ul{ list-style:none;}
+#person ul li{ height:20px; line-height:20px;  float:left; border:1px solid #F06; border-top:none; color:#FFF }
+#person .title{ border:1px solid #F06; }
+#person ul li em{ width:100px; height:20px; display:block; float:left; border-right:1px solid #F06; text-align:center; font-weight:normal;}
+</style>
+<body>
+<div id="person">
+<input type="button" value="ajax解析xml得取数据" />
+    <ul>
+        <li class="title"><em>姓名</em><em>年龄</em><em>职业</em><em>坐名词</em></li>
+        <li><em></em><em></em><em></em><em></em></li>
+        <li><em></em><em></em><em></em><em></em></li>
+        <li><em></em><em></em><em></em><em></em></li>
+        <li class="last"><em></em><em></em><em></em><em></em></li>
+    </ul>
+</div>
+<script type="text/javascript">
+alert("亲!!!要放在服务器上面才可以哦")
+    var xmlhttp;
+    function loadXMLDoc(url) {
+        xmlhttp = null;
+        if (window.XMLHttpRequest) {// code for IE7, Firefox, Opera, etc.
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp != null) {
+            xmlhttp.onreadystatechange = state_Change;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send(null);
+        }
+        else {
+            alert("Your browser does not support XMLHTTP.");
+        }
+    }
+
+
+
+   // loadXMLDoc("test.xml");
+    function responseData() {
+        var name = xmlhttp.responseXML.documentElement.getElementsByTagName("name");
+        var main = document.getElementById("person")
+        var ali = main.getElementsByTagName("li")
+        for (var i = 1; i < name.length + 1; i++) {
+            for (var j = 0; j < ali[i - 1].getElementsByTagName("em").length; j++) {
+                ali[i].getElementsByTagName("em")[j].innerHTML = name[i - 1].getElementsByTagName("xiaomo")[j].childNodes[0].nodeValue;
+            }
+        }
+    }
+
+    function state_Change() {
+        if (xmlhttp.readyState == 4) {// 4 = "loaded"
+            if (xmlhttp.status == 200) {// 200 = "OK"
+                responseData();
+            }
+            else {
+                alert("Problem retrieving XML data:" + xmlhttp.statusText);
+            }
+        }
+    }
+var input = document.getElementsByTagName("input")[0]
+input.onclick = function () {
+    loadXMLDoc("test.xml")
+
+
+}
+</script>
+
+</body>
+</html>

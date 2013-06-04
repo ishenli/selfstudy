@@ -32,5 +32,56 @@ define("ishenli/tools/utils", [], function(require, exports, module) {
             return "Object";
         }
     }
+    function utf8_encode(c) {
+    if (c === null || typeof c === "undefined")
+        return "";
+    var c = c + "", g = "", b, d, f = 0;
+    b = d = 0;
+    for (var f = c.length, m = 0; m < f; m++) {
+        var a = c.charCodeAt(m), r = null;
+        a < 128 ? d++ : r = a > 127 && a < 2048 ? String.fromCharCode(a >> 6 | 192) + String.fromCharCode(a & 63 | 128) : String.fromCharCode(a >> 12 | 224) + String.fromCharCode(a >> 6 & 63 | 128) + String.fromCharCode(a & 63 | 128);
+        if (r !== null) {
+            d > b && (g = g + c.slice(b, d));
+            g = g + r;
+            b = d = m + 1
+        }
+    }
+    d > b && (g = g + c.slice(b, f));
+    return g
+}
+function base64_encode(c) {
+    var g, b, d, f, m = 0, a = 0, r = "", r = [];
+    if (!c)
+        return c;
+    c = utf8_encode(c + "");
+    do {
+        g = c.charCodeAt(m++);
+        b = c.charCodeAt(m++);
+        d = c.charCodeAt(m++);
+        f = g << 16 | b << 8 | d;
+        g = f >> 18 & 63;
+        b = f >> 12 & 63;
+        d = f >> 6 & 63;
+        f = f & 63;
+        r[a++] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".charAt(g) + "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".charAt(b) + "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".charAt(d) + "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".charAt(f)
+    } while (m <
+        c.length);
+    r = r.join("");
+    switch (c.length % 3) {
+        case 1:
+            r = r.slice(0, -2) + "==";
+            break;
+        case 2:
+            r = r.slice(0, -1) + "="
+    }
+    return r
+}
+function urlsafe_base64_encode(c) {
+    return base64_encode(c).replace(/\+/g, "-").replace(/\//g, "_")
+}
+function generate_rs_put_path(c, g, b) {
+    b = b || "image/jpeg";
+    return "/rs-put/" + urlsafe_base64_encode(c + ":" + g) + "/mimeType/" + urlsafe_base64_encode(b) + "/rotate/0"
+}
     module.exports=utils;
 })

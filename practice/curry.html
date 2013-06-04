@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>javascript cuury</title> 
+<script type="text/javascript" src="jquery.js"></script> 
+</head> 
+<body> 
+<script type="text/javascript">
+	var curry=function(fn){
+		// var slice=Array.prototype.slice;
+		var args=[].slice.call(arguments,1);
+		return function(){
+			var newargs=args.concat([].slice.call(arguments));
+			fn.call(null,newargs);
+		};
+	}
+	/*保留参数*/
+	var getWife=curry(function(){
+		var allwife=[].slice.call(arguments);
+		console.log(allwife.join(";"));
+	},"合法老婆")
+	var getwomen=curry(getWife,"mother");
+	getWife("大老婆","smallwife");
+	getwomen("daughter");
+
+	//提前返回
+	var addEvent=(function(){
+		if(window.addEventListener){
+			return function(el,type,fn,capture){
+				el.addEventListener(type,function(e){
+					fn.call(el,e);
+				},capture)
+			};
+		}else if(window.attachEvent){
+			return function(el,type,fn){
+				el.attachEvent("on"+type,function(e){
+					fn.call(el,e);
+				});
+			};
+		}
+	}());
+
+	//延迟计算
+	var curryLazy=function(fn){
+		var _Args=[];
+		return function(){
+			if(arguments.length===0){
+				return fn.apply(null,_Args);
+			}else{
+				_Args=_Args.concat([].slice.call(arguments));
+			}
+		}
+	}
+
+	var fishWeight = 0;
+	var addWeight = curryLazy(function() {
+	    var i=0; len = arguments.length;
+	    for (i; i<len; i+=1) {
+	        fishWeight += arguments[i];
+	    }
+	    console.log(fishWeight);
+	});
+
+	addWeight(2.3);
+	addWeight(6.5);
+	addWeight(1.2);
+	addWeight(2.5);
+	addWeight();    //  这里才计算
+</script> 
+ 
+</body> 
+</html> 

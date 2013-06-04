@@ -1,0 +1,34 @@
+ 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>异步载入脚本</title> 
+<script type="text/javascript" src="jquery.js"></script> 
+
+</head> 
+<body> 
+<script type="text/javascript">
+	function loadScript(url){
+		var n=document.createElement("script");
+		n.type="text/javascript";
+	
+		if(n.readyState){
+			n.onreadystatechange=function(){
+				if(n.readyState==="load"||n.readyState==="complete"){
+				n.onreadystatechange=null;
+				callback();
+				}
+			}
+		}else{
+			n.onload=function(){
+				callback();
+			}
+		}
+		n.src=url;
+		document.getElementByName("head")[0].appendChild(n);
+	}
+</script> 
+ 
+</body> 
+</html> 

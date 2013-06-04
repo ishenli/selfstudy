@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>表格交换位置</title>
+</head>
+<body>
+<input type="button" value="矮油" id="aiyou"/>
+<table>
+<tbody>
+<tr><td class="n1">111</td>
+<td class="n2">222</td>
+<td class="n3">333</td>
+<td class="n4">444</td>
+</tr></tbody>	
+</table>
+	<script type="text/javascript">
+	window.onload = function () {
+		oIn = document.getElementById('aiyou')
+		var oTd= []
+			oTd[1] = document.getElementsByTagName('td')[0]
+			oTd[2]= document.getElementsByTagName('td')[1]
+			oTd[3] = document.getElementsByTagName('td')[2]
+			oTd[4] = document.getElementsByTagName('td')[3]
+			oIn.onclick = function () {
+			swap(oTd[4], oTd[1]);
+			swap(oTd[3], oTd[2]);
+		}
+	}
+	function swap(a, b) {//交换元素
+	 var p=a.parentNode,temp=a.cloneNode(true),bcopy;
+	bcopy= p.replaceChild(temp,b);
+	 var a2=p.replaceChild(bcopy,a);
+	 temp=null;
+}
+
+	</script>
+</body>
+</html>

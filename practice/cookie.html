@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie tools</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function cookieStorage(maxage,path){ //代表有效期和作用域
+			var cookies=(function(){
+				var cookie={};
+				var all=document.cookie;
+				console.log(all);
+				if(all===""){
+					return cookie;
+				}
+				var list=all.split(";");
+				for(var i=0;i<list.length;i++){
+					var item=list[i];
+					var p=item.indexOf("=");
+					var name=item.substring(0,p),value=item.substring(p+1);
+					value=decodeURIComponent(value);
+					cookie[name]=value;
+				}
+				console.log(cookie);
+				return cookie;
+			}());
+			console.log(cookies);
+			var keys=[];
+			
+			for(var key in cookies) keys.push(key);
+			this.length=keys.length;
+		//return the cookies's name which its posistion is n
+			this.key=function(n){
+				if(n<0||n>keys.length)return null;
+				return keys[n];
+			}
+			this.getItem=function(name){
+				return cookies[name]||null;
+			}
+			this.setItem=function(key,value){
+				if(!(key in cookies)){
+					keys.push(key);
+					this.length++;
+				}
+				cookies[key]=value;
+				var newcookie=key+"="+encodeURIComponent(value);
+				console.log("the cook is "+cook);
+				if(maxage)newcookie+=";max-age="+maxage;
+				if(path) newcookie+=";path="+path;
+				document.cookie=newcookie;
+			}
+			this.reomveItem=function(key){
+				if(!(key in cookies)) return;
+				delete cookies[key];
+				for(var i=0;i<keys.length;i++){
+					if(key===keys[i]){
+						keys.splice(i,1);
+						break;
+					}
+				}
+				this.length--;
+			}
+			this.clear=function(){
+				for(var i=0;i<keys.length;i++){
+					document.cookie=keys[i]+"=;max-age=0";
+
+				}
+				cookies={};
+				keys=[];
+				this.length=0;
+			}
+		}
+		// test
+		var cookies=new cookieStorage();
+		console.log(cookies.length);
+		console.log(cookies.getItem("test"));
+		cookies.setItem("test","mo");
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>javascript 深度克隆</title>
+	<script type="text/javascript" src="jquery.js"></script>
+    <style type="text/css">
+    * {
+    margin:0;
+    padding:0;
+    }
+    </style>
+    <style type="text/css">
+        #A{
+            
+            width: 300px;
+            background-color: #00f;
+            height: 200px;
+        }
+        #B{
+            /*float: left;*/
+            width: 300px;
+            background-color: #f00;
+            height: 200px;
+        }
+        #C{
+            
+            width: 300px;
+            background-color: green;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        function cloneObject(obj){
+             if(!obj || 'object' !== typeof obj) return obj;
+
+            var toString=Object.prototype.toString,i;
+             var o=toString.call(obj).slice(8,-1)==="Array"?[]:{};
+             for(i in obj){
+                if(obj.hasOwnProperty(i)){
+                   o[i]=typeof obj[i]==="Object"?cloneObject(obj[i]):obj[i];
+                }
+             }
+             return o;
+        }
+        var c={a:null,d:[1,2],person:{name:"shenli"}};
+        console.log(c);
+        var b=cloneObject(c);
+        console.log(b);
+        b.a="hello";
+        console.log(c);
+        console.log(b);
+    </script>
+</body>
+</html>

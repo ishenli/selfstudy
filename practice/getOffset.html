@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>获取offset</title>
+</head>
+<body>
+<input type="button" value="矮油" id="aiyou"/>
+<table>
+<tbody>
+<tr><td class="n1">111</td>
+<td class="n2">222</td>
+<td class="n3">333</td>
+<td class="n4">444</td>
+</tr></tbody>	
+</table>
+	<script type="text/javascript">
+		function getOffset(W){
+			var w=w||window;//pass the window object if there is no one ,pass the current window
+			if(w.pageXOffset!=null)return{x:w.pageXOffset,y:w.pageYOffset};
+			var d=w.document;
+			if(d.compateMode==="CSS1Compat"){
+				return {x:d.documentElement.scrollLeft,y:d.documentElement.scrollTop};
+			}
+			return {x:d.body.scrollLeft,y:d.body.scrollTop};
+
+		}
+	</script>
+</body>
+</html>

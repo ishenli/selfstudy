@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>哈希表</title>
+</head>
+
+<body>
+<script type="text/javascript">
+function HashTable(a, b, c, d, e) { // 定义类
+	this.data = {
+		"a": a,
+		"b": b,
+		"c": c,
+		"d": d,
+		"e": e
+	}
+}
+// 添加
+HashTable.prototype.add = function(key, value) {
+	// 判断key是否存在
+	if (key in this.data) {
+		alert("key已经存在");
+	}
+	this.data[key] = value;
+}
+//删除
+HashTable.prototype.del = function(key) {
+	delete(this.data[key]);
+	alert("删除成功");
+}
+// 取值
+HashTable.prototype.getValue = function(key) {
+	alert(this.data[key]);
+}
+// 循环所有值
+HashTable.prototype.getAll = function() {
+	for (var i in this.data) {
+		document.write(i + ":" + this.data[i] + "<br />");
+	}
+}
+//用另外一种方式得到属性
+HashTable.prototype.otherGetAll = function() {
+	for (var i in this.data) {
+		if (this.data.hasOwnProperty(i)) {
+			document.write(i + ":" + this.data[i] + "<br />");
+		}
+	}
+}
+var hashTable = new HashTable("a", "b", "c", "d", "e");
+hashTable.add("add", "1")
+hashTable.getValue("add")
+hashTable.del("add")
+hashTable.getAll()
+</script>
+</body>
+</html>

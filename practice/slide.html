@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换</title>
+    <script src="jquery.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #slide{
+            width: 200px;
+            height: 50px;;
+            overflow: hidden;
+        }
+        .ui-switchable-panel{
+            width: 400px;
+            height: 300px;
+            border:1px solid #000;
+            display: none;
+        }
+        .ui-switchable-panel-active{
+            display: block;
+        }
+        .ui-switchable-nav{
+            position: relative;
+            display: block;
+            width: 9999px;
+            height: 50px;
+        }
+        .ui-switchable-nav li{
+            display: block;
+            float: left;
+            height: 50px;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<h1>Standard</h1>
+<div id="J_Slide">
+    <span data-role="prev" class="prev" >上一页</span>
+    <div id="slide">
+        <ul class="ui-switchable-nav" data-role="nav">
+            <li data-role="trigger">标题 1</li>
+            <li data-role="trigger">标题 2</li>
+            <li data-role="trigger">标题 3</li>
+            <li data-role="trigger">标题 4</li>
+            <li data-role="trigger">标题 5</li>
+        </ul>
+    </div>
+    <div>
+        <!-- 容器元素 -->
+        <div  data-role="content" class="ui-switchable-content">
+            <!-- 面板列表 -->
+            <div data-role="panel" class="ui-switchable-panel ui-switchable-panel-active">内容 1</div>
+            <div data-role="panel" class="ui-switchable-panel">内容2</div>
+            <div data-role="panel" class="ui-switchable-panel">内容3</div>
+            <div data-role="panel" class="ui-switchable-panel">内容4</div>
+            <div data-role="panel" class="ui-switchable-panel">内容5</div>
+        </div>
+        <span class="next" data-role="next">下一页</span>
+    </div>
+</div>
+<script type="text/javascript">
+(function($) {
+
+    var defaults, methods,settings,elem;
+
+
+    defaults = {
+        element: '#J_Slide',
+        panels: '.ui-switchable-content div',
+        triggers: '.ui-switchable-nav li',
+        step: 5,
+        circular: true,
+        prevBtn: '.prev',
+        nextBtn: '.next',
+        direction:'next',
+        speed: 350,
+        start: 1,
+        easing: 'swing',
+        animating:false,
+        randomize: false,
+        autoPlay:true,
+        pause:3000,
+        interval:3000
+    };
+
+
+    methods = {
+        init: function(options) {
+            options   = (typeof options === "object") ? options : {};
+            settings  = $.extend({}, defaults, options);
+
+            return this.each(function() {
+                elem=this;
+                var self=$(this),
+                    content=settings.content?$(settings.content):self.children("[data-role='content']"),
+                    panels=settings.panels?$(settings.panels):self.children("[data-role='panel']"),
+                    nav=settings.nav?$(settings.nav):self.find("[data-role='nav']"),
+                    childCount=panels.length,
+                    startingChild=(settings.start&&settings.start>(childCount-1))?(childCount-1):settings.start,
+                    width=settings.width?settings.width:$(settings.triggers).outerWidth();
+
+                self.css({
+                    position:"relative"
+                }).data("slide",$.extend({},settings,{
+                            content:content,
+                            startingChild:startingChild,
+                            width:width,
+                            current:0,
+                            total:childCount,
+                            panels:panels,
+                            nav:nav
+                        }
+                    )
+                );
+                var animating=self.data("slide").animating;
+                if(childCount<2) return;
+
+                if(settings.autoPlay){
+                    playInterval=setInterval(function(){
+                        methods.animate(settings.direction);
+                    },settings.interval);
+                    self.data("interval",playInterval);
+                }
+                if(settings.nextBtn){
+                    $(settings.nextBtn).bind("click.slide",function(){
+                        methods.pause();
+                        if(!animating){
+                            animating=true;
+                            methods.next();
+                        }else{
+
+                            return;
+                        }
+                        return false;
+                    })
+                }
+
+                if(settings.prevBtn){
+                    $(settings.prevBtn).bind("click.slide",function(){
+                        methods.pause();
+                        if(!animating){
+                            animating=true;
+                            methods.prev();
+                        }else{
+                            return;
+                        }
+                        return false;
+                    })
+                }
+
+
+            });
+        },
+        /**
+         * 向后滑动
+         * @param duration
+         * @param effect
+         * @returns {*}
+         */
+        next:function(duration,effect){
+            return methods.animate.apply(this,["next"]);
+        },
+        prev:function(duration,effect) {
+            return methods.animate.apply(this,["prev"]);
+        },
+        animate:function(which){
+            console.log("animate which is "+which);
+            var self=$(elem),data=self.data("slide"),panels=data.nav;
+
+            switch (which){
+                case "next":
+                    panels.animate({left: "-"+data.width},data.speed,data.easing,function(){
+                    data.nav.children().first().clone().appendTo(data.nav);
+                    data.nav.children().first().remove();
+                    data.current=data.current+1;
+                    panels.css({left:0});
+                    methods.setActive.call(self,data.current);
+                    data.animating=false;
+                    }
+                );
+                break;
+                case "prev":
+                    panels.animate({left: "+"+data.width},data.speed,data.easing,function(){
+                    data.nav.children().first().before(data.nav.children().last().clone());
+                    data.nav.children().last().remove();
+                    data.current=data.current-1;
+                    panels.css({left:0});
+                    methods.setActive.call(self,data.current);
+                    data.animating=false;
+
+                });
+                break;
+            }
+            panels.css({left:0});
+            methods.setActive.call(self,data.current);
+            data.animating=false;
+        },
+        setActive:function(number){
+            console.log("SetActive:--------"+number);
+            var self=$(elem), data=self.data("slide");
+            if(number>=data.total){
+                data.current=0;
+                number=0;
+            }
+            if(number<0){
+                data.current=data.total-1;
+                number=data.total-1;
+            }
+            $(".ui-switchable-panel-active").removeClass("ui-switchable-panel-active");
+            return self.find(data.panels).eq(number).addClass("ui-switchable-panel-active");
+        },
+        pause:function(pause){
+            var self=$(elem),data=self.data("slide");
+            clearTimeout(self.data("pause"));
+            clearInterval(self.data("interval"));
+            pauseTimeout = setTimeout(function() {
+                playInterval = setInterval(function() {
+                    methods.next();
+                }, settings.interval);
+                self.data('interval', playInterval);
+            }, data.pause);
+            self.data('pause', pauseTimeout);
+        }
+    };
+
+
+    // start the plugin
+    $.fn.Slide = function(method) {
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === "object" || $.isFunction(method) || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error("Method " + method + "does not exist");
+        }
+    };
+}(jQuery));
+</script>
+    <script type="text/javascript">
+        $('#J_Slide').Slide({
+            next:".next",
+            prev:".prev",
+            direction:"next",
+            speed:300
+        });
+</script>
+</body>
+</html>
