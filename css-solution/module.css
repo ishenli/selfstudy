@@ -57,3 +57,60 @@
 .small.white.super.ui-btn span { padding: 3px 12px 5px; }
 .large.super.ui-btn { background-position: left bottom; -webkit-border-radius: 18px; -moz-border-radius: 18px; }
 .large.super.ui-btn span { font-size: 14px; padding: 7px 20px 9px; -webkit-border-radius: 17px; -moz-border-radius: 17px; }
+
+/*常用logo的代码*/
+h1 {
+    text-indent: -9999px;
+    margin: 0 auto;
+    width: 320px;
+    height: 85px;
+    background: transparent url("images/logo.png") no-repeat scroll;
+}
+
+/*图片阴影*/
+img.polaroid {
+    background:#000; /*Change this to a background image or remove*/
+    border:solid #fff;
+    border-width:6px 6px 20px 6px;
+    box-shadow:1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
+    -webkit-box-shadow:1px 1px 5px #333;
+    -moz-box-shadow:1px 1px 5px #333;
+    height:200px; /*Set to height of your image or desired div*/
+    width:200px; /*Set to width of your image or desired div*/
+}
+/*背景全部覆盖*/
+html {
+    background: url('images/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*Vertically Centered Content*/
+.container {
+    min-height: 6.5em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*Force Vertical Scrollbars*/
+html{
+    height: 101%;
+}
+/*CSS3 Gradients Template*/
+#colorbox {
+    background: #629721;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#83b842), to(#629721));
+    background-image: -webkit-linear-gradient(top, #83b842, #629721);
+    background-image: -moz-linear-gradient(top, #83b842, #629721);
+    background-image: -ms-linear-gradient(top, #83b842, #629721);
+    background-image: -o-linear-gradient(top, #83b842, #629721);
+    background-image: linear-gradient(top, #83b842, #629721);
+}
+
+/*CSS3 Zebra Stripes for table*/
+tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+
+
