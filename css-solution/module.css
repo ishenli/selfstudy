@@ -113,4 +113,259 @@ tbody tr:nth-child(odd) {
     background-color: #ccc;
 }
 
+/*Triangular List Bullets*/
+ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+li:before {
+    content: "";
+    border-color: transparent #111;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
 
+/*CSS3 Column Text*/
+#columns-3 {
+    text-align: justify;
+    -moz-column-count: 3;
+    -moz-column-gap: 12px;
+    -moz-column-rule: 1px solid #c4c8cc;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 12px;
+    -webkit-column-rule: 1px solid #c4c8cc;
+}
+
+/*CSS Fixed Footer*/
+#footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    background: #444;
+}
+
+/* IE 6 */
+* html #footer {
+    position: absolute;
+    top: expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+
+/*Transparent PNG Fix For IE6*/
+.bg {
+    width:200px;
+    height:100px;
+    background: url(/folder/yourimage.png) no-repeat;
+    _background:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/folder/yourimage.png',sizingMethod='crop');
+}
+
+
+/* 1px gif method */
+img, .png {
+    position: relative;
+    behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+       this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+       this.src = "images/transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+       this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+       this.runtimeStyle.backgroundImage = "none")),this.pngSet=true));
+}
+
+/*Cross-Browser Minimum Height*/
+#container {
+    min-height: 550px;
+    height: auto !important;
+    height: 550px;
+}
+
+/*Force Code Wraps*/
+pre {
+    whitewhite-space: pre-wrap;       /* css-3 */
+    whitewhite-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    whitewhite-space: -pre-wrap;      /* Opera 4-6 */
+    whitewhite-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/*Webpage Top Box Shadow*/
+body:before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+
+    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    z-index: 100;
+}
+/*CSS3 Speech Bubble*/
+.chat-bubble {
+    background-color: #ededed;
+    border: 2px solid #666;
+    font-size: 35px;
+    line-height: 1.3em;
+    margin: 10px auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 300px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px #888;
+    font-family: 'Bangers', arial, serif;
+}
+.chat-bubble-arrow-border {
+    border-color: #666 transparent transparent transparent;
+    border-style: solid;
+    border-width: 20px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: -42px;
+    left: 30px;
+}
+.chat-bubble-arrow {
+    border-color: #ededed transparent transparent transparent;
+    border-style: solid;
+    border-width: 20px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: -39px;
+    left: 30px;
+}
+
+/*CSS Tooltip Hovers*/
+a {
+    border-bottom:1px solid #bbb;
+    color:#666;
+    display:inline-block;
+    position:relative;
+    text-decoration:none;
+}
+a:hover,
+a:focus {
+    color:#36c;
+}
+a:active {
+    top:1px;
+}
+
+/* Tooltip styling */
+a[data-tooltip]:after {
+    border-top: 8px solid #222;
+    border-top: 8px solid hsla(0,0%,0%,.85);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    content: "";
+    display: none;
+    height: 0;
+    width: 0;
+    left: 25%;
+    position: absolute;
+}
+a[data-tooltip]:before {
+    background: #222;
+    background: hsla(0,0%,0%,.85);
+    color: #f6f6f6;
+    content: attr(data-tooltip);
+    display: none;
+    font-family: sans-serif;
+    font-size: 14px;
+    height: 32px;
+    left: 0;
+    line-height: 32px;
+    padding: 0 15px;
+    position: absolute;
+    text-shadow: 0 1px 1px hsla(0,0%,0%,1);
+    whitewhite-space: nowrap;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+a[data-tooltip]:hover:after {
+    display: block;
+    top: -9px;
+}
+a[data-tooltip]:hover:before {
+    display: block;
+    top: -41px;
+}
+a[data-tooltip]:active:after {
+    top: -10px;
+}
+a[data-tooltip]:active:before {
+    top: -42px;
+}
+
+/*Github Fork Ribbon*/
+.ribbon {
+    background-color: #a00;
+    overflow: hidden;
+    /* top left corner */
+    position: absolute;
+    left: -3em;
+    top: 2.5em;
+    /* 45 deg ccw rotation */
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    /* shadow */
+    -moz-box-shadow: 0 0 1em #888;
+    -webkit-box-shadow: 0 0 1em #888;
+}
+.ribbon a {
+    border: 1px solid #faa;
+    color: #fff;
+    display: block;
+    font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+    margin: 0.05em 0 0.075em 0;
+    padding: 0.5em 3.5em;
+    text-align: center;
+    text-decoration: none;
+    /* shadow */
+    text-shadow: 0 0 0.5em #444;
+}
+
+/*Featured CSS3 Display Banner*/
+.featureBanner {
+    position: relative;
+    margin: 20px
+}
+.featureBanner:before {
+    content: "Featured";
+    position: absolute;
+    top: 5px;
+    left: -8px;
+    padding-right: 10px;
+    color: #232323;
+    font-weight: bold;
+    height: 0px;
+    border: 15px solid #ffa200;
+    border-right-color: transparent;
+    line-height: 0px;
+    box-shadow: -0px 5px 5px -5px #000;
+    z-index: 1;
+}
+
+.featureBanner:after {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: -8px;
+    border: 4px solid #89540c;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
