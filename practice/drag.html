@@ -67,7 +67,7 @@
 				this._Handle = $(this.options.Handle) || this.Drag;
 
 				addEventListener(this._Handle,"mousedown",BindAsEventListener(this,this.Start));
-			}
+			},
 			//设置默认属性
 			setOptions:function(options){
 				this.options={
