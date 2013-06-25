@@ -13,7 +13,6 @@
             z-index:300;
             cursor:move;
         }
-        /*#idHandle{cursor:move; height:25px; background:#0000FF; overflow:hidden;}*/
     </style>
 </head>
 <body>
@@ -73,6 +72,7 @@
 
 		//drag 
 		var Drag=Class.create();
+
 		Drag.prototype={
 			initialize:function(drag,options){
 				this.Drag=$(drag);
@@ -84,12 +84,13 @@
                 this.onStart = this.options.onStart;
                 this.onMove = this.options.onMove;
                 this.onStop = this.options.onStop;
-				this._Handle = $(this.options.Handle) || this.Drag;
                 this.Drag.style.position = "absolute";
                 this.Drag.style.backgroundColor=this.options.color;
                 this.Drag.style.width=this.options.width+"px";
+                this.Drag.style.left=this.options.left+"px";
+                this.Drag.style.top=this.options.top+"px";
                 this.Drag.style.height=this.options.height+"px";
-                addEventHandler(this._Handle,"mousedown",BindAsEventListener(this,this.Start));
+                addEventHandler(this.Drag,"mousedown",BindAsEventListener(this,this.Start));
 			},
 			//设置默认属性
 			setOptions:function(options){
@@ -98,6 +99,8 @@
                     color:"#000",
                     width:"50",
                     height:"50",
+                    left:"50",
+                    top:"100",
 					onStart:function(){},
 					onStop:function(){
                        var oLeft=this.Drag.style.left.slice(0,-2);
@@ -183,10 +186,10 @@
     <div id="idDrag3" class="drag"></div>
     <div id="idDrag4" class="drag"></div>
     <script type="text/javascript">
-        var drag = new Drag("idDrag1", { Handle: "idDrag1"});
-        var drag2 = new Drag("idDrag2", { Handle: "idDrag2",color:"red"});
-        var drag3 = new Drag("idDrag3", { Handle: "idDrag3",color:'red'});
-        var drag4 = new Drag("idDrag4", { Handle: "idDrag4",color:'yellow'});
+        var drag = new Drag("idDrag1", { Handle: "idDrag1",color:'yellow',left:100,top:70});
+        var drag2 = new Drag("idDrag2", { Handle: "idDrag2",color:"red",left:150,top:40});
+        var drag3 = new Drag("idDrag3", { Handle: "idDrag3",color:'red',left:120,top:140});
+        var drag4 = new Drag("idDrag4", { Handle: "idDrag4",color:'yellow',left:100,top:350});
     </script>
 </body>
 </html>
