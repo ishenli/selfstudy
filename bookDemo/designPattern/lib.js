@@ -161,13 +161,13 @@ OfflineHandler.prototype.request=function(method,url,callback,postVars){
             postVars:postVars
         });
     }else{
-        this.flushStoredRequest();
+        this.flushStoredRequests();
         OfflineHandler.superclass.request(method,url,callback,postVars);
     }
 };
 
-OfflineHandler.prototype.flushStoredRequest=function(){
-    for(var i,len=this.storedRequests.length;i<len;i++){
+OfflineHandler.prototype.flushStoredRequests=function(){
+    for(var i=0,len=this.storedRequests.length;i<len;i++){
         var req=this.storedRequests[i];
         OfflineHandler.superclass.request(req.method,req.url,req.callback,req.postVars);
     }
