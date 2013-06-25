@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
+
+var $=function(id){
+    return document.getElementById(id);
+}
 /**
  * Intenface 类,规定对象的接口实现方法
  * @param name
@@ -26,5 +30,34 @@ var Interface=function(name,methods){
             "pass in as a string");
         }
         this.methods.push(methods[i]);
+    }
+}
+
+
+var Offline=function(){
+    this.storedRequests=[];
+}
+/**
+ * xhrManager
+ * @type {{createXhrHandler: Function, isOffline: Function, isHighLatency: Function}}
+ */
+var  xhrManager={
+    createXhrHandler:function(){
+        var xhr;
+        if(this.isOffline()){
+            xhr=new OfflineHandler();
+        }else if(this.isHighLatency()){
+            xhr=new QueueHandler();
+        }else{
+            xhr=new SimpleHandler();
+        }
+        Interface.ensureImplements(xhr,AjaxHandler);
+        return xhr;
+    },
+    isOffline:function(){
+
+    },
+    isHighLatency:function(){
+
     }
 }
