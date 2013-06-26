@@ -199,7 +199,7 @@ OfflineHandler.prototype.flushStoredRequests=function(){
  * xhrManager
  * @type {{createXhrHandler: Function, isOffline: Function, isHighLatency: Function}}
  */
-var  xhrManager={
+var  XhrManager={
     createXhrHandler:function(){
         var xhr;
         if(this.isOffline()){
