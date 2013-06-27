@@ -219,3 +219,38 @@ var  XhrManager={
 
     }
 }
+
+/**
+ * 立即执行函数，创建请求对象
+ */
+var asyncRequest=(function(){
+    function handleReadyState(o,callback){
+        var poll=window.setInterval(function(){
+            if(o&& o.readyState==4){
+                window.clearInterval(poll);
+                if(callback) {callback(o);}
+            }
+        },50);
+    }
+
+    var getXHR=function(){
+        var http;
+        try{
+            http=new XMLHttpRequest();
+            getXHR=function(){
+                return new XMLHttpRequest();
+            }
+        }catch (e){
+            console.log("the browser does not support the XMLHttpRequest");
+        }
+
+        return http;
+    };
+    return function(method,uri,callback,postData){
+        var http=getXHR();
+        http.open(method,uri,true);
+        handleReadyState(http,callback);
+        http.send(postData||null);
+        return http;
+    }
+}());
