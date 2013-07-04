@@ -21,7 +21,7 @@ var CompositeForm=function(id,method,action){ // implements Composite interface
 CompositeForm.prototype.add=function(child){
     Interface.ensureImplements(child,Composite,FormItem);
     this.formComponents.push(child);
-    this.element.appendChild(child.getChild());
+    this.element.appendChild(child.getElement());
 }
 
 CompositeForm.prototype.remove=function(child){
@@ -46,3 +46,44 @@ CompositeForm.prototype.save=function(){
 CompositeForm.prototype.getElement=function(){
     return this.element;
 }
+
+var Field=function(id){          //implements Composite ,FormItems
+    this.id=id;
+    this.element=null;
+}
+
+Field.prototype.add=function(){};
+Field.prototype.remove=function(){};
+Field.prototype.getChild=function(){};
+Field.prototype.save=function(){
+    setCookie(this.id,this.getValue());
+}
+Field.prototype.getElement=function(){
+    return this.element;
+}
+
+Field.prototype.getValue=function(){
+    throw new Error("Unsupported operation on the class Field");
+}
+
+var InputField=function(id,label){
+    Field.call(this,id);
+    this.input=document.createElement("input");
+    this.input.id=id;
+    this.label=document.createElement("label");
+    var labelText=document.createTextNode(label);
+    this.label.appendChild(labelText);
+    this.element=document.createElement("div");
+    this.element.className="input-field";
+    this.element.appendChild(this.label);
+    this.element.appendChild(this.input);
+};
+
+extend(InputField,Field);// inherit from field
+
+InputField.prototype.getValue=function(){
+    return this.input.value;
+}
+
+
+

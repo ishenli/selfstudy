@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>form demo</title>
+    <script type="text/javascript" src="../lib.js"></script>
+    <script type="text/javascript" src="form.js"></script>
+    <script type="text/javascript">
+        var contactForm=new CompositeForm('contactForm','get','http://www.baidu.com');
+        contactForm.add(new InputField("first-name",'First name'));
+    </script>
+</head>
+<body>
+    <div id="demo"></div>
+    <script type="text/javascript">
+        document.getElementById("demo").appendChild(contactForm.getElement());
+    </script>
+</body>
+</html>
