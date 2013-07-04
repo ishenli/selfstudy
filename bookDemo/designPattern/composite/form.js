@@ -66,10 +66,11 @@ Field.prototype.getValue=function(){
     throw new Error("Unsupported operation on the class Field");
 }
 
-var InputField=function(id,label){
+var InputField=function(id,label,value){
     Field.call(this,id);
     this.input=document.createElement("input");
     this.input.id=id;
+    this.input.value=value;
     this.label=document.createElement("label");
     var labelText=document.createTextNode(label);
     this.label.appendChild(labelText);
@@ -85,5 +86,17 @@ InputField.prototype.getValue=function(){
     return this.input.value;
 }
 
+var TextareaField=function(id,label){
+    Field.call(this,id);
+    this.input=document.createElement("textarea");
+    this.input.id=id;
+    this.element=document.createElement("div");
+    this.label=document.createElement("label");
+    var labelText=document.createTextNode(label);
+    this.element.appendChild(labelText);
+    this.element.appendChild(this.input);
+}
+
+extend(TextareaField,Field);
 
 

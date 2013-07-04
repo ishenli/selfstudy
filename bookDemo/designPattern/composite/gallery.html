@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>gallery demo</title>
+    <script type="text/javascript" src="../lib.js"></script>
+    <script type="text/javascript" src="gallery.js"></script>
+    <script type="text/javascript">
+        var topGallery=new DynamicGallery('top-gallery');
+        topGallery.add(new GalleryImage("http://e.hiphotos.baidu.com/album/w%3D230/sign=cf96661df9dcd100cd9cff22428b47be/d043ad4bd11373f07653a38fa50f4bfbfbed04b6.jpg"));
+        topGallery.add(new GalleryImage("http://e.hiphotos.baidu.com/album/w%3D230/sign=cf96661df9dcd100cd9cff22428b47be/d043ad4bd11373f07653a38fa50f4bfbfbed04b6.jpg"));
+        topGallery.add(new GalleryImage("http://e.hiphotos.baidu.com/album/w%3D230/sign=cf96661df9dcd100cd9cff22428b47be/d043ad4bd11373f07653a38fa50f4bfbfbed04b6.jpg"));
+        topGallery.add(new GalleryImage("http://e.hiphotos.baidu.com/album/w%3D230/sign=cf96661df9dcd100cd9cff22428b47be/d043ad4bd11373f07653a38fa50f4bfbfbed04b6.jpg"));
+
+    </script>
+</head>
+<body>
+    <div id="demo"></div>
+    <script type="text/javascript">
+        $("demo").appendChild(topGallery.getElement());
+    </script>
+</body>
+</html>

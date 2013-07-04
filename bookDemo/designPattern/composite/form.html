@@ -7,7 +7,9 @@
     <script type="text/javascript" src="form.js"></script>
     <script type="text/javascript">
         var contactForm=new CompositeForm('contactForm','get','http://www.baidu.com');
-        contactForm.add(new InputField("first-name",'First name'));
+        contactForm.add(new InputField("first-name",'First name','shen'));
+        contactForm.add(new InputField("last-name",'Last name','li'));
+        contactForm.add(new TextareaField("description","description"));
     </script>
 </head>
 <body>
