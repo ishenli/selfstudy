@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>装饰器demo</title>
+    <script type="text/javascript" src="../lib.js"></script>
+    <script type="text/javascript" src="decorator.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var myBicycle=new AcmeComfortCruiser();
+    alert(myBicycle.getPrice());//399
+
+    myBicycle=new HeadlightDecorator(myBicycle);
+    alert(myBicycle.getPrice());//414
+</script>
+</body>
+</html>
