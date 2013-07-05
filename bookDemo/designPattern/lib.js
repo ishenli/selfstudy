@@ -69,9 +69,9 @@ var extend=function(subClass,superClass){
     F.prototype=superClass.prototype;
     subClass.prototype=new F();
     subClass.prototype.constructor=subClass;
-    subClass.superclass=superClass.superclass;
-    if(subClass.prototype.constructor==Object.prototype.constructor){
-        subClass.prototype.constructor=superClass;
+    subClass.superclass=superClass.prototype;
+    if(superClass.prototype.constructor==Object.prototype.constructor){
+        superClass.prototype.constructor=superClass;
     }
 }
 var SimpleHandler=function(){};
