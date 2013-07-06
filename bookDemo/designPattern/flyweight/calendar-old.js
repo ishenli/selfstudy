@@ -55,7 +55,7 @@ CalendarMonth.prototype={
     }
 }
 
-var CalendarDay=function(data,parent){
+var CalendarDay=function(date,parent){
     this.date=date;
     this.element=document.createElement("div");
     this.element.style.display="none";
