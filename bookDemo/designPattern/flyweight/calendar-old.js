@@ -66,6 +66,6 @@ CalendarDay.prototype={
         this.element.style.display="block";
         this.element.innerHTML=this.date;
     }
-}
+};
 
-//改代码的问题在于你不得不为每一年创建一个365个Calendar对象
+//该代码的问题在于你不得不为每一年创建一个365个Calendar对象
