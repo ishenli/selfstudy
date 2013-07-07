@@ -63,7 +63,7 @@ var CalendarMonth=function(mouthNum,numDays,parent){
 CalendarMonth.prototype={
     display:function(){
         for(var i= 0,len=this.days.length;i<len;i++){
-            this.days[i].display(i,this.element);
+            this.days[i].display(i,this.element); //原来提供给构造函数的参数提供给display方法
         }
         this.element.style.display="block";
     }
