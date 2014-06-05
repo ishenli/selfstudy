@@ -25,7 +25,9 @@ prototype是javascript oop的实现基础，通过它“子类”可以访问“
     alert(Foo.constructor === Function); //true
 ```
 上面的代码应该很常见，当我第一次看到这个，直接有点晕。。。为了弄清楚Foo和Object的原型关系，我还新建了一个Object的实例obj，对应的关系如下图：
+
 ![Alt text](http://media.tumblr.com/4a8b3940c0c7ee9b45e03a61c7b15ba7/tumblr_inline_n4l9v6EgcY1r336bu.png)
+
 起先，当初最让我感到困惑的是**constructor**的值，因为根据官方的定义，constructor是存在于prototype中，如果我们直接访问`foo.constructor`,大家都知道它就是Foo,因为foo的构造函数就是Foo,如果访问`Foo.constructor`,它是什么呢？通过推测是`Function`。后来看到一片文章，一下子就清楚了。文章原文
 > 做为一个对象，当你访问其中的一个成员或方法的时候，如果这个对象中没有这个方法或成员，那么javascript引擎将会访问这个对象的`__proto__`成员所指向的另外的一个对象，并在那个对象中查找指定的方法或成员，如果不能找到，那就会继续通过那个对象的`__proto__`成员指向的对象进行递归查找，直到这个链表结束
 !注：`__proto__`这个属性只有在firefox或者chrome浏览器中才是公开允许访问的，
